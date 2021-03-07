@@ -1,60 +1,101 @@
 import React, { Component } from 'react'
-import DomaineService from '../services/DomaineService'
-import ModelAddDomaine from '../components/ModelAddDomaine'
-import DataTableDomaines from '../components/DataTableDomaines'
-class ListDomaineComponent extends Component {
+import FormateurService from '../services/FormateurService'
+import ModelAddFormateur from '../components/ModelAddFormateur'
+import DataTableFormateur from '../components/DataTableFormateur'
+class ListFormateurs extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-                domaines: [],
-                id: '',
-                libelle: ''
+                formateurs: [],
+                cin: '',
+                nom: '',
+                prenom: '',
+                genre: '',
+                tel: '',
+                email: '',
+                mp: '',
+                salaire: '',
+                diponibilites:'Voir plus',
         }
-        this.saveDomaine = this.saveDomaine.bind(this);
-        this.changeLibelleHandler = this.changeLibelleHandler.bind(this);
-        this.changeIdHandler = this.changeIdHandler.bind(this);
+        this.saveFormateur = this.saveFormateur.bind(this);
+        this.changeCinHandler = this.changeCinHandler.bind(this);
+        this.changeNomHandler = this.changeNomHandler.bind(this);
+        this.changePrenomHandler = this.changePrenomHandler.bind(this);
+        this.changeGenreHandler = this.changeGenreHandler.bind(this);
+        this.changeTelHandler = this.changeTelHandler.bind(this);
+        this.changeEmailHandler = this.changeEmailHandler.bind(this);
+        this.changeMpHandler = this.changeMpHandler.bind(this);
+        this.changeSalaireHandler = this.changeSalaireHandler.bind(this);
       
-        this.editDomaine = this.editDomaine.bind(this);
-        this.deleteDomaine = this.deleteDomaine.bind(this);
+        this.editFormateur = this.editFormateur.bind(this);
+        this.deleteFormateur = this.deleteFormateur.bind(this);
     }
 
-    deleteDomaine(id){
-        DomaineService.deleteDoamine(id).then( res => {
-            this.setState({domaines: this.state.domaines.filter(domaine => domaine.id !== id)});
+    deleteFormateur(id){
+        FormateurService.deleteFormateur(id).then( res => {
+            this.setState({formateurs: this.state.formateurs.filter(Formateur => Formateur.id !== id)});
         });
     }
-    viewDomaine(id){
-        this.props.history.push(`/view-domaine/${id}`);
+    viewFormateur(id){
+        this.props.history.push(`/view-Formateur/${id}`);
     }
-    editDomaine(id){
-        this.props.history.push(`/add-domaine/${id}`);
+    editFormateur(id){
+        this.props.history.push(`/add-Formateur/${id}`);
     }
 
     componentDidMount(){
-        DomaineService.getDomaines().then((res) => {
-            this.setState({ domaines: res.data});
+        FormateurService.getFormateurs().then((res) => {
+            this.setState({ formateurs: res.data});
             console.log(res.data);
         });
     }
 
-    saveDomaine = () => {
+    saveFormateur = () => {
         //e.preventDefault();
-        let domaine = {libelle: this.state.libelle};
-        console.log('domaine => ' + JSON.stringify(domaine));
+        let formateur = {
+            cin: this.state.cin,
+            nom: this.state.nom,
+            prenom: this.state.prenom,
+            genre: this.state.genre,
+            tel: this.state.tel,
+            email: this.state.email,
+            mp: this.state.mp,
+            salaire:this.state.salaire,
+            diponibilites:'Voir plus',
 
-            DomaineService.createDomaine(domaine).then(res =>{
-                this.props.history.push('/domaines');
+        };
+        console.log('formateur => ' + JSON.stringify(formateur));
+
+            FormateurService.createFormateur(formateur).then(res =>{
+                this.props.history.push('/formateurs');
             });
       
     }
     
-    changeLibelleHandler= (event) => {
-        this.setState({libelle: event.target.value});
+    changeNomHandler= (event) => {
+        this.setState({nom: event.target.value});
     }
-
-    changeIdHandler= (event) => {
-        this.setState({id: event.target.value});
+    changePrenomHandler= (event) => {
+        this.setState({prenom: event.target.value});
+    }
+    changeGenreHandler= (event) => {
+        this.setState({genre: event.target.value});
+    }
+    changeTelHandler= (event) => {
+        this.setState({tel: event.target.value});
+    }
+    changeEmailHandler= (event) => {
+        this.setState({email: event.target.value});
+    }
+    changeMpHandler= (event) => {
+        this.setState({mp: event.target.value});
+    }
+    changeSalaireHandler= (event) => {
+        this.setState({salaire: event.target.value});
+    }
+    changeCinHandler= (event) => {
+        this.setState({cin: event.target.value});
     }
     render() {
         return (
@@ -228,7 +269,7 @@ class ListDomaineComponent extends Component {
         <div className="container-fluid">
             <div className="tab-content">
 
-                <div className="tab-pane active" id="gestion-domaine">
+                <div className="tab-pane active" id="gestion-Formateur">
                   
                   <div className="card">
                   <div class="card-body">
@@ -238,9 +279,16 @@ class ListDomaineComponent extends Component {
                                 
                               </div>
                               <div className="col-lg-2 col-md-2 col-sm-2">
-                              <ModelAddDomaine libelle = {this.state.libelle} 
-                                            id = {this.state.id} addDomaine = {this.saveDomaine} changeHandlerId= {this.changeIdHandler}
-                                            changeHandlerLibelle= {this.changeLibelleHandler} />
+                              <ModelAddFormateur cin = {this.state.cin} 
+                                            nom = {this.state.nom} genre = {this.state.genre} 
+                                            prenom = {this.state.prenom} tel = {this.state.tel} 
+                                            mp = {this.state.mp}   email= {this.state.email} salaire = {this.state.salaire}
+                                            changeHandlerCin= {this.changeCinHandler}
+                                            changeHandlerNom= {this.changeNomHandler}
+                                            changeHandlerPrenom= {this.changePrenomHandler} 
+                                            changeHandlerGenre= {this.changeGenreHandler} changeHandlerTel= {this.changeTelHandler}
+                                            changeHandlerEmail= {this.changeEmailHandler} changeHandlerMp= {this.changeMpHandler}
+                                            changeHandlerSalaire= {this.changeSalaireHandler} saveFormateur={this.saveFormateur}/>
                               
                               </div>
                           
@@ -251,7 +299,7 @@ class ListDomaineComponent extends Component {
 
 
                   <div className="card">
-                     <DataTableDomaines domaines={this.state.domaines} />
+                     <DataTableFormateur formateurs={this.state.formateurs} />
                   </div>
               </div>
 
@@ -288,4 +336,4 @@ class ListDomaineComponent extends Component {
     }
 }
 
-export default ListDomaineComponent
+export default ListFormateurs

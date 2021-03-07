@@ -1,6 +1,6 @@
 import React, {  useState } from "react";
 import { Modal,Button } from 'react-bootstrap';
-function ModelAddSpec() {
+function ModelAddSpec(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -20,13 +20,14 @@ function ModelAddSpec() {
                                             <div className="col-md-6 col-sm-12">
                                                 <div className="form-group">
                                                     <label>Libellé</label>
-                                                    <input type="text" className="form-control" />
+                                                    <input type="text" className="form-control"  value = {props.libelle} onChange = {props.changeHandlerLibelle} />
                                                 </div>
                                             </div>
                                             <div className="col-md-6 col-sm-12">
                                                 <div className="form-group">
                                                     <label>Domaine</label>
-                                                    <select class="form-control input-height" name="gender">
+                                                    <select class="form-control input-height" name="gender"  value = {props.domaine} 
+                                                    onChange = {props.changeHandlerDomaine}>
                                                     <option value="">Select...</option>
                                                     <option value="Category 1">Male</option>
                                                     <option value="Category 2">Female</option>
@@ -40,7 +41,7 @@ function ModelAddSpec() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={() => {handleClose(); props.addSpecialite();}}>
             Enregistrer
           </Button>
         </Modal.Footer>

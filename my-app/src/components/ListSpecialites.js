@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import SpecialiteService from '../services/SpecialiteService'
 import ModelAddSpec from './ModelAddSpec';
+import DataTableSpecialite from './DataTableSpecialite'
 class ListSpecialiteComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-                specialites: []
+                specialites: [],
+                domaine: '',
+                libelle: ''
         }
-        this.addSpecialite = this.addSpecialite.bind(this);
+        this.saveSpecialite = this.saveSpecialite.bind(this);
         this.editSpecialite = this.editSpecialite.bind(this);
         this.deleteSpecialite = this.deleteSpecialite.bind(this);
+        this.changeLibelleHandler = this.changeLibelleHandler.bind(this);
+        this.changeDomaineHandler = this.changeDomaineHandler.bind(this);
     }
 
     deleteSpecialite(id){
@@ -28,13 +33,26 @@ class ListSpecialiteComponent extends Component {
     componentDidMount(){
         SpecialiteService.getSpecialites().then((res) => {
             this.setState({ Specialites: res.data});
+            console.log(res.data);
         });
     }
 
-    addSpecialite(){
-        this.props.history.push('/add-Specialite/_add');
+    saveSpecialite(){
+        //this.props.history.push('/add-Specialite/_add');
+        let specialite = {libelle: this.state.libelle,domaine: this.state.domaine };
+        console.log('specialite => ' + JSON.stringify(specialite));
+
+            SpecialiteService.createSpecialite(specialite).then(res =>{
+                this.props.history.push('/specialite');
+            });
+    }
+    changeLibelleHandler= (event) => {
+        this.setState({libelle: event.target.value});
     }
 
+    changeDomaineHandler= (event) => {
+        this.setState({domaine: event.target.value});
+    }
     render() {
         return (
 <div>
@@ -211,27 +229,15 @@ class ListSpecialiteComponent extends Component {
                     <div className="card">
                     <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-2 col-md-4 col-sm-4">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Roll No."/>
-                                    </div>
-                                </div>
-                           
-                          
-                                <div class="col-lg-2 col-md-4 col-sm-4">
-                                    <div class="input-group">
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-block" title="">Search</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4">
+                        
+                                <div class="col-lg-10 col-md-8 col-sm-8">
                                    
                                 </div>
+                              
                                 <div class="col-lg-2 col-md-4 col-sm-4">
-                            
-                                
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-4">
-                                <ModelAddSpec /> 
+                                <ModelAddSpec libelle = {this.state.libelle} 
+                                            domaine= {this.state.domaine} addSpecialite = {this.saveSpecialite} changeHandlerLibelle= {this.changeLibelleHandler}
+                                            changeHandlerDomaine= {this.changeDomaineHandler}/> 
                                 </div>
                             </div>
                         </div>
@@ -239,118 +245,9 @@ class ListSpecialiteComponent extends Component {
                     </div>
 
 
-                    <div className="table-responsive card">
-                        <table className="table table-hover table-vcenter table-striped mb-0 text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Libellé</th>
-                                 
-                                    <th>Domaine</th>
-                                   
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>A25</td>
-                                 
-                                    <td><span className="font-16">Ken Smith</span></td>
-                                    <td>Science</td>
-                                  
-                                    <td>
-                                        <button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>A26</td>
-                                  
-                                    <td><span className="font-16">Gerald K Smith</span></td>
-                                    <td>M.C.A.</td>
-                               
-                                    <td>
-                                        <button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>A25</td>
-                                
-                                    <td><span className="font-16">Ken Smith</span></td>
-                                
-                                    <td>04 Jan, 2019</td>
-                                    <td>
-                                        <button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>A27</td>
-                                  
-                                    <td><span className="font-16">Alice A Smith</span></td>
-                                    <td>M.B.B.S.</td>
-                                
-                                    <td>
-                                        <button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>A17</td>
-                                  
-                                    <td><span className="font-16">Ken Smith</span></td>
-                                    <td>Arts</td>
-                                 
-                                    <td>
-                                        <button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>A11</td>
-                                
-                                    <td><span className="font-16">Corrine M Johnson</span></td>
-                                    <td>Mechanical</td>
-                                   
-                                    <td>
-                                        <button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>A12</td>
-                               
-                                    <td><span className="font-16">Alan Johnson</span></td>
-                                    <td>Music</td>
-                               
-                                    <td>
-                                        <button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>A23</td>
-                                 
-                                    <td><span className="font-16">John Smith</span></td>
-                                    <td>Civil</td>
-                                 
-                                    <td>
-                                        <button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button>
-                                        <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <div className="card">
+                     <DataTableSpecialite specialites={this.state.specialites} />
+                  </div>
                 </div>
 
 

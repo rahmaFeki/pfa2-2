@@ -21,8 +21,9 @@ function SideBar() {
                         <li><a href="index.html"><i className="fa fa-dashboard"></i><span>Tableau De Bord</span></a></li>
                         <li> <NavLink to="/domaines" activeStyle={{ fontWeight: '600' }}><i className="fa fa-book"></i><span>Gestion Domaines</span></NavLink></li>
                         <li ><NavLink to="/specialites" activeStyle={{ fontWeight: '600' }}><i className="fa fa-users"></i><span>Gestion Spécialités </span></NavLink></li>
+                        <li><NavLink to="/formateurs" activeStyle={{ fontWeight: '600' }}><i className="fa fa-user-circle-o"></i><span>Gestion Formateurs</span></NavLink></li>
                         <li><a href="professors.html"><i className="fa fa-black-tie"></i><span>Professors</span></a></li>
-                        <li><a href="staff.html"><i className="fa fa-user-circle-o"></i><span>Staff</span></a></li>
+                        
                         <li className="active"><a href="students.html"><i className="fa fa-users"></i><span>Students</span></a></li>
                         <li><a href="departments.html"><i className="fa fa-users"></i><span>Departments</span></a></li>
                         <li><a href="courses.html"><i className="fa fa-graduation-cap"></i><span>Courses</span></a></li>                        
