@@ -27,51 +27,11 @@ export default function DataTableDomaines(props) {
       },
     ],
     rows: [
-      {
-        Réference: 'Tiger Nixon',
-        Libellé: 'System Architect',
-        Action:<div><button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button><button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button><button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button></div>,
-      },
-      {
-        Réference: 'Tiger Nixon',
-        Libellé: 'System Architect',
-        Action:<div><button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button><button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button><button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button></div>,
-      },
-      {
-        Réference: 'Tiger Nixon',
-        Libellé: 'System Architect',
-        Action:<div><button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button><button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button><button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button></div>,
-      },
-      {
-        Réference: 'Tiger Nixon',
-        Libellé: 'System Architect',
-        Action:<div><button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button><button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button><button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button></div>,
-      },
-      {
-        Réference: 'Tiger Nixon',
-        Libellé: 'System Architect',
-        Action:<div><button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button><button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button><button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button></div>,
-      },
-      {
-        Réference: 'Tiger Nixon',
-        Libellé: 'System Architect',
-        Action:<div><button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button><button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button><button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button></div>,
-      },
-            {
-        Réference: 'Tiger Nixon',
-        Libellé: 'System Architect',
-        Action:<div><button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button><button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button><button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button></div>,
-      },
-      {
-        Réference: 'Tiger Nixon',
-        Libellé: 'System Architect',
-        Action:<div><button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button><button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button><button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button></div>,
-      },
-      {
-        Réference: 'Tiger Nixon',
-        Libellé: 'System Architect',
-        Action:<div><button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button><button type="button" className="btn btn-icon btn-sm" title="Edit"><i className="fa fa-edit"></i></button><button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i className="fa fa-trash-o text-danger"></i></button></div>,
-      },
+  
+      props.domaines.rows.map((row, order) => ({
+       row,
+        action: <div><button type="button" className="btn btn-icon btn-sm" title="View"><i className="fa fa-eye"></i></button></div>
+      })),
     ],
   });
 
@@ -81,7 +41,7 @@ export default function DataTableDomaines(props) {
       entriesOptions={[5, 20, 25]}
       entries={5}
       pagesAmount={4}
-      data={props.domaines}
+      data={datatable}
       pagingTop
       searchTop
       searchBottom={false}

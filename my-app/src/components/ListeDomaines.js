@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DomaineService from '../services/DomaineService'
 import ModelAddDomaine from '../components/ModelAddDomaine'
-import DataTableDomaines from '../components/DataTableDomaines'
+
 class ListDomaineComponent extends Component {
     constructor(props) {
         super(props)
@@ -249,9 +249,42 @@ class ListDomaineComponent extends Component {
                       
                   </div>
 
+                  <div className="table-responsive card">
+                      <table className="table table-hover table-vcenter table-striped mb-0 text-nowrap">
+                          <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Libellé</th>
+                            
+                                  <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                        
+                 
+                              {
+                                    this.state.domaines.map(
+                                        domaine => 
+                                        <tr key = {domaine.id}>
+                                            <td> { domaine.id} </td>
+                                             <td> { domaine.libelle} </td>   
+                                            
+                                             <td>
+                                             <button type="button" className="btn btn-icon btn-sm" title="View" onClick={ () => this.viewDomaine(domaine.id)}><i className="fa fa-eye"></i></button>
+                                      <button type="button" className="btn btn-icon btn-sm" title="Edit" onClick={ () => this.editDomaine(domaine.id)}><i className="fa fa-edit"></i></button>
+                                      <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={ () => this.deleteDomaine(domaine.id)}><i className="fa fa-trash-o text-danger"></i></button>
 
-                  <div className="card">
-                     <DataTableDomaines domaines={this.state.domaines} />
+                                                
+                                             </td>
+                                        </tr>
+                                    )
+                                }
+                 
+                    
+               
+                     
+                          </tbody>
+                      </table>
                   </div>
               </div>
 
