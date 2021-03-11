@@ -16,7 +16,7 @@ class SpecialiteService {
         return axios.get(SPECIALITE_API_BASE_URL + '/' + specialiteId);
     }
 
-    updateDomaine(Specialite, specialiteId){
+    updateSpecialite(Specialite, specialiteId){
         return axios.put(SPECIALITE_API_BASE_URL + '/' + specialiteId, Specialite);
     }
 
