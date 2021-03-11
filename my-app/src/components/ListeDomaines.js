@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DomaineService from '../services/DomaineService'
 import ModelAddDomaine from '../components/ModelAddDomaine'
-
+import ModelUpdateDomaine from '../components/ModelUpdateDomaine'
 class ListDomaineComponent extends Component {
     constructor(props) {
         super(props)
@@ -9,13 +9,17 @@ class ListDomaineComponent extends Component {
         this.state = {
                 domaines: [],
                 id: '',
-                libelle: ''
+                libelle: '',
+                updatedId:'',
+                updatedLibelle:''
+             
         }
         this.saveDomaine = this.saveDomaine.bind(this);
         this.changeLibelleHandler = this.changeLibelleHandler.bind(this);
         this.changeIdHandler = this.changeIdHandler.bind(this);
-      
-        this.editDomaine = this.editDomaine.bind(this);
+        this.changeLibelleHandlerUpdate = this.changeLibelleHandlerUpdate.bind(this);
+        this.changeIdHandlerUpdate = this.changeIdHandlerUpdate.bind(this);
+
         this.deleteDomaine = this.deleteDomaine.bind(this);
     }
 
@@ -27,9 +31,7 @@ class ListDomaineComponent extends Component {
     viewDomaine(id){
         this.props.history.push(`/view-domaine/${id}`);
     }
-    editDomaine(id){
-        this.props.history.push(`/add-domaine/${id}`);
-    }
+ 
 
     componentDidMount(){
         DomaineService.getDomaines().then((res) => {
@@ -48,7 +50,7 @@ class ListDomaineComponent extends Component {
             });
       
     }
-    
+
     changeLibelleHandler= (event) => {
         this.setState({libelle: event.target.value});
     }
@@ -56,6 +58,14 @@ class ListDomaineComponent extends Component {
     changeIdHandler= (event) => {
         this.setState({id: event.target.value});
     }
+    changeLibelleHandlerUpdate= (event) => {
+        this.setState({updatedLibelle: event.target.value});
+    }
+
+    changeIdHandlerUpdate= (event) => {
+        this.setState({updatedId: event.target.value});
+    }
+
     render() {
         return (
 <div>
@@ -231,8 +241,8 @@ class ListDomaineComponent extends Component {
                 <div className="tab-pane active" id="gestion-domaine">
                   
                   <div className="card">
-                  <div class="card-body">
-                          <div class="row">
+                  <div className="card-body">
+                          <div className="row">
   
                               <div className="col-lg-10 col-md-10 col-sm-10">
                                 
@@ -253,37 +263,37 @@ class ListDomaineComponent extends Component {
                       <table className="table table-hover table-vcenter table-striped mb-0 text-nowrap">
                           <thead>
                               <tr>
-                                  <th>Id</th>
-                                  <th>Libellé</th>
+                                  <th style={{width:"50%"}}>Id</th>
+                                  <th style={{width:"80%"}}>Libellé</th>
                             
-                                  <th>Action</th>
+                                  <th >Action</th>
                               </tr>
                           </thead>
                           <tbody>
                         
                  
-                              {
-                                    this.state.domaines.map(
-                                        domaine => 
-                                        <tr key = {domaine.id}>
-                                            <td> { domaine.id} </td>
-                                             <td> { domaine.libelle} </td>   
-                                            
-                                             <td>
-                                             <button type="button" className="btn btn-icon btn-sm" title="View" onClick={ () => this.viewDomaine(domaine.id)}><i className="fa fa-eye"></i></button>
-                                      <button type="button" className="btn btn-icon btn-sm" title="Edit" onClick={ () => this.editDomaine(domaine.id)}><i className="fa fa-edit"></i></button>
-                                      <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={ () => this.deleteDomaine(domaine.id)}><i className="fa fa-trash-o text-danger"></i></button>
-
-                                                
-                                             </td>
-                                        </tr>
-                                    )
-                                }
-                 
-                    
+                        {
+                              this.state.domaines.map(
+                                  domaine => 
+                                  <tr key = {domaine.id}>
+                                      <td> { domaine.id} </td>
+                                       <td> { domaine.libelle} </td>   
+                                      
+                                       <td>
+<button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
+ <ModelUpdateDomaine  updatedLibelle ={this.state.updatedLibelle }    
+      updatedId = {this.state.updatedId}  changeHandlerIdUpdate= {this.changeIdHandlerUpdate}
+      changeHandlerLibelleUpdate= {this.changeLibelleHandlerUpdate} />
+<button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={ () => this.deleteDomaine(domaine.id)} ><i className="fa fa-trash-o text-danger"></i></button>
+</td>
+                                  </tr>
+                              )
+                          }
+           
+              
+         
                
-                     
-                          </tbody>
+                    </tbody>
                       </table>
                   </div>
               </div>
