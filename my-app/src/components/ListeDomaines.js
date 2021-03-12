@@ -281,7 +281,7 @@ class ListDomaineComponent extends Component {
 
                                                                 <td>
                                                                     <button type="button" classnom="btn btn-icon btn-sm" title="View" ><i classnom="fa fa-eye"></i></button>
-                                                                    <ModelUpdateDomaine updatedLibelle={this.state.updatedLibelle}
+                                                                    <ModelUpdateDomaine updatedLibelle={this.state.updatedLibelle} redirect={this.props.history}
                                                                         updatedId={this.state.updatedId} changeHandlerIdUpdate={this.changeIdHandlerUpdate}
                                                                         changeHandlerLibelleUpdate={this.changeLibelleHandlerUpdate} />
                                                                     <button type="button" classnom="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteDomaine(domaine.idDomaine)} ><i classnom="fa fa-trash-o text-danger"></i></button>

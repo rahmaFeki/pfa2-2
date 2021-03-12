@@ -15,7 +15,7 @@ class ListSpecialiteComponent extends Component {
             updatedName: ''
         }
         this.saveSpecialite = this.saveSpecialite.bind(this);
-        this.editSpecialite = this.editSpecialite.bind(this);
+        this.redirectSpecialite = this.redirectSpecialite.bind(this);
         this.deleteSpecialite = this.deleteSpecialite.bind(this);
         this.changeLibelleHandler = this.changeLibelleHandler.bind(this);
         this.changeDomaineHandler = this.changeDomaineHandler.bind(this);
@@ -31,8 +31,8 @@ class ListSpecialiteComponent extends Component {
     viewSpecilite(id) {
         this.props.history.push(`/view-Specialite/${id}`);
     }
-    editSpecialite(id) {
-        this.props.history.push(`/add-Specialite/${id}`);
+    redirectSpecialite() {
+        this.props.history.push('/specialites');
     }
 
     componentDidMount() {
@@ -278,7 +278,7 @@ class ListSpecialiteComponent extends Component {
 
                                                                 <td>
                                                                     <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
-                                                                    <ModelUpdateSpec updatedLibelle={this.state.updatedLibelle} idSpecialite={1}
+                                                                    <ModelUpdateSpec updatedLibelle={this.state.updatedLibelle} idSpecialite={1} redirect={this.props.history}
                                                                         updatedName={this.state.updatedName} changeHandlerNameUpdate={this.changeNameHandlerUpdate}
                                                                         changeHandlerLibelleUpdate={this.changeLibelleHandlerUpdate} />
                                                                     <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteSpecialite(spec.idSpecialite)} ><i className="fa fa-trash-o text-danger"></i></button>

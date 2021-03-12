@@ -10,7 +10,7 @@ function ModelUpdateSpec(props) {
   const editSpec = () => {
     let specialite = {libelle:props.updateLibelle, name: props.updatedName };
 SpecialiteService.updateSpecialite(specialite,props.idSpecialite ).then( res => {
-    props.history.push('/specialites');
+    props.redirect.push('/specialites');
 });
 }
   return (
