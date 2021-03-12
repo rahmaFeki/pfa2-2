@@ -25,7 +25,7 @@ class ListSpecialiteComponent extends Component {
 
     deleteSpecialite(id) {
         SpecialiteService.deleteSpecialite(id).then(res => {
-            this.setState({ Specialites: this.state.Specialites.filter(Specialite => Specialite.id !== id) });
+            this.setState({ Specialites: this.state.Specialites.filter(Specialite => Specialite.idSpecialite !== id) });
         });
     }
     viewSpecilite(id) {
