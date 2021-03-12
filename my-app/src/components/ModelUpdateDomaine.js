@@ -8,7 +8,7 @@ function ModelUpdateDomaine(props) {
   const handleShow = () => setShow(true);
  
   const editDomaine = () => {
-    let domaine = {idDomaine:props.updateId, name: props.updatedLibelle };
+    let domaine = {idDomaine:props.updatedId, nom: props.updatedLibelle };
 DomaineService.updateDomaine(domaine,props.updatedId ).then( res => {
     props.redirect.push('/domaines');
 });

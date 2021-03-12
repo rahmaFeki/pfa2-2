@@ -8,8 +8,8 @@ function ModelUpdateSpec(props) {
   const handleShow = () => setShow(true);
  
   const editSpec = () => {
-    let specialite = {libelle:props.updateLibelle, name: props.updatedName };
-SpecialiteService.updateSpecialite(specialite,props.idSpecialite ).then( res => {
+    let specialite = {idSpecialite:props.idSpecialite, libelle:props.updatedLibelle, domaine: props.updatedName };
+SpecialiteService.updateSpecialite(specialite).then( res => {
     props.redirect.push('/specialites');
 });
 }

@@ -16,8 +16,8 @@ class SpecialiteService {
         return axios.get(SPECIALITE_API_BASE_URL + '/' + specialiteId);
     }
 
-    updateSpecialite(Specialite, specialiteId){
-        return axios.put(SPECIALITE_API_BASE_URL + '/' + specialiteId, Specialite);
+    updateSpecialite(Specialite){
+        return axios.put(SPECIALITE_API_BASE_URL, Specialite);
     }
 
     deleteSpecialite(specialiteId){
