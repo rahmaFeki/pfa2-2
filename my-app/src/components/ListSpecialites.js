@@ -8,8 +8,8 @@ class ListSpecialiteComponent extends Component {
         super(props)
 
         this.state = {
-            specialites: [],
-            name: '',
+            Specialites: [],
+            nom: '',
             libelle: '',
             updatedLibelle: '',
             updatedName: ''
@@ -38,7 +38,7 @@ class ListSpecialiteComponent extends Component {
     componentDidMount() {
         SpecialiteService.getSpecialites().then((res) => {
             this.setState({ Specialites: res.data });
-            console.log(res.data);
+            console.log(this.state.Specialites);
         });
     }
 
@@ -270,18 +270,18 @@ class ListSpecialiteComponent extends Component {
 
 
                                                 {
-                                                    this.state.specialites.map(
+                                                    this.state.Specialites.map(
                                                         spec =>
                                                             <tr key={spec.idSpecialite}>
-                                                                <td> {spec.libelle} </td>
-                                                                <td> {spec.name} </td>
+                                                                <td> {spec.libelle}  </td>
+                                                                <td> {spec.domaine.nom} </td>
 
                                                                 <td>
                                                                     <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
                                                                     <ModelUpdateSpec updatedLibelle={this.state.updatedLibelle} idSpecialite={1}
                                                                         updatedName={this.state.updatedName} changeHandlerNameUpdate={this.changeNameHandlerUpdate}
                                                                         changeHandlerLibelleUpdate={this.changeLibelleHandlerUpdate} />
-                                                                    <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteSpecialite(1)} ><i className="fa fa-trash-o text-danger"></i></button>
+                                                                    <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteSpecialite(spec.idSpecialite)} ><i className="fa fa-trash-o text-danger"></i></button>
                                                                 </td>
                                                             </tr>
                                                     )
@@ -292,6 +292,7 @@ class ListSpecialiteComponent extends Component {
 
                                             </tbody>
                                         </table>
+                                        
                                     </div>
                                 </div>
 

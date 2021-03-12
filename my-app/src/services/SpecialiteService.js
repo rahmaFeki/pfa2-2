@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SPECIALITE_API_BASE_URL = "http://localhost:8080/api/v1/Specialites";
+const SPECIALITE_API_BASE_URL = "http://localhost:8031/api/Specialites";
 
 class SpecialiteService {
 
