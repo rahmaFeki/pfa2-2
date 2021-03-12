@@ -16,8 +16,8 @@ class DomaineService {
         return axios.get(DOMAINE_API_BASE_URL + '/' + domaineId);
     }
 
-    updateDomaine(domaine, domaineId){
-        return axios.put(DOMAINE_API_BASE_URL + '/' + domaineId, domaine);
+    updateDomaine(domaine){
+        return axios.put(DOMAINE_API_BASE_URL, domaine);
     }
 
     deleteDomaine(domaineId){
