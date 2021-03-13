@@ -7,7 +7,7 @@ function ModelUpdateSpec(props) {
   const handleClose = () => setShow(false);
 
   const handleShow = () => setShow(true);
- 
+  const history = useHistory();
   const editSpec = () => {
     let specialite = {idSpecialite:props.idSpecialite, libelle:props.updatedLibelle, domaine: props.updatedName };
 SpecialiteService.updateSpecialite(specialite).then( res => {
