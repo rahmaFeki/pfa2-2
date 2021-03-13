@@ -2,12 +2,29 @@ import React, {  useState } from "react";
 import { Modal,Button } from 'react-bootstrap';
 function ModelAddDomaine(props) {
   const [show, setShow] = useState(false);
+  
+  const [msgError, setMsgError] = useState('');
   const handleClose = () => setShow(false);
-
-  const handleShow = () => setShow(true);
+  
  
+  function handleShow (){
+    setMsgError('');
+    setShow(true);
+  
+   
+  }
+ 
+  function handleSubmit() {
+    
+   if(document.getElementById('libelle').value===''){
+    setMsgError('Le champ libellé est obligatoire');
+   }
+   else
+  handleClose();
+  }
 
   return (
+    
     <>
     <button type="button" class="btn btn-primary" onClick={handleShow}><i class="fa fa-plus mr-2"></i>Domaine</button>
 
@@ -16,19 +33,23 @@ function ModelAddDomaine(props) {
           <Modal.Title>Ajouter Domaine</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <div className="row clearfix"> <div className="col-md-1 col-sm-2"> </div>  <div className="col-md-6 col-sm-6 error"> 
+       {msgError}
+        </div></div>
         <div className="row clearfix">
-                                     
+        
                                             <div className="col-md-6 col-sm-12">
+                                             
                                                 <div className="form-group">
                                                     <label>Référence</label>
                                                     <input type="text" className="form-control"  
-                                                    value= {props.id} onChange = {props.changeHandlerId}  />
+                                                    value= {props.id} required onChange = {props.changeHandlerId}  />
                                                 </div>
                                             </div>
                                             <div className="col-md-6 col-sm-12">
                                                 <div className="form-group">
                                                     <label>Libellé</label>
-                                                    <input type="text" className="form-control" value = {props.libelle} onChange = {props.changeHandlerLibelle}  />
+                                                    <input type="text" className="form-control" id="libelle" value = {props.libelle} onChange = {props.changeHandlerLibelle}  />
                                                 </div>
                                             </div>
                                          
@@ -38,7 +59,7 @@ function ModelAddDomaine(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => {handleClose(); props.addDomaine();}}>
+          <Button variant="primary" onClick={() => {handleSubmit();  props.addDomaine(); }} type="submit">
             Enregistrer
           </Button>
         </Modal.Footer>

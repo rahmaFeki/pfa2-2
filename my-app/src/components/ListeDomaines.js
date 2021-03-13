@@ -73,7 +73,7 @@ class ListDomaineComponent extends Component {
 
                 <div className="page">
 
-                    <div className="section-body" idDomaine="page_top">
+                    <div className="section-body" id="page_top">
                         <div className="container-fluid">
                             <div className="page-header">
                                 <div className="left">
@@ -89,18 +89,18 @@ class ListDomaineComponent extends Component {
                                         <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
                                             <div className="dropdown-menu">
-                                                <a className="dropdown-item" href="page-empty.html">Empty page</a>
-                                                <a className="dropdown-item" href="page-profile.html">Profile</a>
-                                                <a className="dropdown-item" href="page-search.html">Search Results</a>
-                                                <a className="dropdown-item" href="page-timeline.html">Timeline</a>
-                                                <a className="dropdown-item" href="page-invoices.html">Invoices</a>
-                                                <a className="dropdown-item" href="page-pricing.html">Pricing</a>
+                                                <a className="dropdown-item" >Empty page</a>
+                                                <a className="dropdown-item" >Profile</a>
+                                                <a className="dropdown-item" >Search Results</a>
+                                                <a className="dropdown-item" >Timeline</a>
+                                                <a className="dropdown-item" >Invoices</a>
+                                                <a className="dropdown-item" >Pricing</a>
                                             </div>
                                         </li>
                                         <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Auth</a>
                                             <div className="dropdown-menu">
-                                                <a className="dropdown-item" href="login.html">Login</a>
+                                                <a className="dropdown-item" >Login</a>
                                                 <a className="dropdown-item" href="register.html">Register</a>
                                                 <a className="dropdown-item" href="forgot-password.html">Forgot password</a>
                                                 <div className="dropdown-divider"></div>
@@ -113,11 +113,11 @@ class ListDomaineComponent extends Component {
                                         <div className="dropdown d-flex">
                                             <a className="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i className="fa fa-language"></i></a>
                                             <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a className="dropdown-item" href="#"><img className="w20 mr-2" src="../assets/images/flags/us.svg" alt="" />English</a>
+                                                <a className="dropdown-item" ><img className="w20 mr-2" src="../assets/images/flags/us.svg" alt="" />English</a>
                                                 <div className="dropdown-divider"></div>
-                                                <a className="dropdown-item" href="#"><img className="w20 mr-2" src="../assets/images/flags/es.svg" alt="" />Spanish</a>
-                                                <a className="dropdown-item" href="#"><img className="w20 mr-2" src="../assets/images/flags/jp.svg" alt="" />japanese</a>
-                                                <a className="dropdown-item" href="#"><img className="w20 mr-2" src="../assets/images/flags/bl.svg" alt="" />France</a>
+                                                <a className="dropdown-item" ><img className="w20 mr-2" src="../assets/images/flags/es.svg" alt="" />Spanish</a>
+                                                <a className="dropdown-item" ><img className="w20 mr-2" src="../assets/images/flags/jp.svg" alt="" />japanese</a>
+                                                <a className="dropdown-item" ><img className="w20 mr-2" src="../assets/images/flags/bl.svg" alt="" />France</a>
                                             </div>
                                         </div>
                                         <div className="dropdown d-flex">
@@ -125,7 +125,7 @@ class ListDomaineComponent extends Component {
                                             <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                 <ul className="right_chat list-unstyled w350 p-0">
                                                     <li className="online">
-                                                        <a href="javascript:void(0);" className="media">
+                                                        <a href="" className="media">
                                                             <img className="media-object" src="../assets/images/xs/avatar4.jpg" alt="" />
                                                             <div className="media-body">
                                                                 <span className="nom">Donald Gardner</span>
@@ -136,7 +136,7 @@ class ListDomaineComponent extends Component {
                                                         </a>
                                                     </li>
                                                     <li className="online">
-                                                        <a href="javascript:void(0);" className="media">
+                                                        <a  className="media">
                                                             <img className="media-object " src="../assets/images/xs/avatar5.jpg" alt="" />
                                                             <div className="media-body">
                                                                 <span className="nom">Wendy Keen</span>
@@ -147,7 +147,7 @@ class ListDomaineComponent extends Component {
                                                         </a>
                                                     </li>
                                                     <li className="offline">
-                                                        <a href="javascript:void(0);" className="media">
+                                                        <a  className="media">
                                                             <img className="media-object " src="../assets/images/xs/avatar2.jpg" alt="" />
                                                             <div className="media-body">
                                                                 <span className="nom">Matt Rosales</span>
@@ -158,7 +158,7 @@ class ListDomaineComponent extends Component {
                                                         </a>
                                                     </li>
                                                     <li className="online">
-                                                        <a href="javascript:void(0);" className="media">
+                                                        <a  className="media">
                                                             <img className="media-object " src="../assets/images/xs/avatar3.jpg" alt="" />
                                                             <div className="media-body">
                                                                 <span className="nom">Phillip Smith</span>
@@ -170,7 +170,7 @@ class ListDomaineComponent extends Component {
                                                     </li>
                                                 </ul>
                                                 <div className="dropdown-divider"></div>
-                                                <a href="javascript:void(0)" className="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
+                                                <a  className="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
                                             </div>
                                         </div>
                                         <div className="dropdown d-flex">
@@ -218,13 +218,13 @@ class ListDomaineComponent extends Component {
                                             <a href="javascript:void(0)" className="chip ml-3" data-toggle="dropdown">
                                                 <span className="avatar" style={{ backgroundImage: "url(../assets/images/xs/avatar5.jpg)" }}></span> George</a>
                                             <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a className="dropdown-item" href="page-profile.html"><i className="dropdown-icon fe fe-user"></i> Profile</a>
-                                                <a className="dropdown-item" href="app-setting.html"><i className="dropdown-icon fe fe-settings"></i> Settings</a>
-                                                <a className="dropdown-item" href="app-email.html"><span className="float-right"><span className="badge badge-primary">6</span></span><i className="dropdown-icon fe fe-mail"></i> Inbox</a>
-                                                <a className="dropdown-item" href="javascript:void(0)"><i className="dropdown-icon fe fe-send"></i> Message</a>
+                                                <a className="dropdown-item" ><i className="dropdown-icon fe fe-user"></i> Profile</a>
+                                                <a className="dropdown-item" ><i className="dropdown-icon fe fe-settings"></i> Settings</a>
+                                                <a className="dropdown-item" ><span className="float-right"><span className="badge badge-primary">6</span></span><i className="dropdown-icon fe fe-mail"></i> Inbox</a>
+                                                <a className="dropdown-item" ><i className="dropdown-icon fe fe-send"></i> Message</a>
                                                 <div className="dropdown-divider"></div>
-                                                <a className="dropdown-item" href="javascript:void(0)"><i className="dropdown-icon fe fe-help-circle"></i> Need help?</a>
-                                                <a className="dropdown-item" href="login.html"><i className="dropdown-icon fe fe-log-out"></i> Sign out</a>
+                                                <a className="dropdown-item" ><i className="dropdown-icon fe fe-help-circle"></i> Need help?</a>
+                                                <a className="dropdown-item" ><i className="dropdown-icon fe fe-log-out"></i> Sign out</a>
                                             </div>
                                         </div>
                                     </div>
@@ -238,7 +238,7 @@ class ListDomaineComponent extends Component {
                         <div className="container-fluid">
                             <div className="tab-content">
 
-                                <div className="tab-pane active" idDomaine="gestion-domaine">
+                                <div className="tab-pane active" >
 
                                     <div className="card">
                                         <div className="card-body">
@@ -263,7 +263,7 @@ class ListDomaineComponent extends Component {
                                         <table className="table table-hover table-vcenter table-striped mb-0 text-nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th style={{ width: "50%" }}>idDomaine</th>
+                                                    <th style={{ width: "50%" }}>Identifiant</th>
                                                     <th style={{ width: "80%" }}>Libellé</th>
 
                                                     <th >Action</th>
@@ -319,14 +319,14 @@ class ListDomaineComponent extends Component {
                 <div className="note-popover popover in note-image-popover bottom">  <div className="arrow"></div>  <div className="popover-content note-children-container">
                     <div className="note-btn-group btn-group note-imagesize">
                         <button type="button" className="note-btn btn btn-default btn-sm" ><span className="note-fontsize-10">100%</span></button>
-                        <button type="button" className="note-btn btn btn-default btn-sm" ><span className="note-fontsize-10">50%</span></button><button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Resize Quarter"><span className="note-fontsize-10">25%</span></button></div><div className="note-btn-group btn-group note-float">
-                        <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Float Left"><i className="note-icon-align-left"></i></button>
-                        <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Float Right"><i className="note-icon-align-right"></i></button>
-                        <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Float None">
+                        <button type="button" className="note-btn btn btn-default btn-sm" ><span className="note-fontsize-10">50%</span></button><button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Resize Quarter"><span className="note-fontsize-10">25%</span></button></div><div className="note-btn-group btn-group note-float">
+                        <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Float Left"><i className="note-icon-align-left"></i></button>
+                        <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Float Right"><i className="note-icon-align-right"></i></button>
+                        <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Float None">
                             <i className="note-icon-align-justify"></i></button></div>
                     <div className="note-btn-group btn-group note-remove">
-                        <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Remove Image"><i className="note-icon-trash"></i></button></div></div></div>
-                <div className="tooltip fade bs-tooltip-right" role="tooltip" idDomaine="tooltip848872" x-placement="right" style={{ position: "absolute" }}  ><div className="arrow" ></div><div className="tooltip-inner">Inbox</div></div>
+                        <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Remove Image"><i className="note-icon-trash"></i></button></div></div></div>
+                <div className="tooltip fade bs-tooltip-right" role="tooltip" id="tooltip848872" x-placement="right" style={{ position: "absolute" }}  ><div className="arrow" ></div><div className="tooltip-inner">Inbox</div></div>
             </div>
         )
     }

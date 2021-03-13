@@ -9,7 +9,7 @@ function ModelUpdateDomaine(props) {
   const handleShow = () => setShow(true);
   const history = useHistory();
   const editDomaine = () => {
-
+document.getElementById('label').value="hhhh";
     let domaine = {idDomaine:props.updatedId, nom: props.updatedLibelle };
 DomaineService.updateDomaine(domaine,props.updatedId ).then( res => {
   history.push({
@@ -39,7 +39,7 @@ DomaineService.updateDomaine(domaine,props.updatedId ).then( res => {
                                             <div className="col-md-6 col-sm-12">
                                                 <div className="form-group">
                                                     <label>Libellé</label>
-                                                    <input type="text" className="form-control" value = {props.updatedLibelle} onChange = {props.changeHandlerLibelleUpdate}  />
+                                                    <input type="text" className="form-control" id="label" value = {props.updatedLibelle} onChange = {props.changeHandlerLibelleUpdate}  />
                                                 </div>
                                             </div>
                                          

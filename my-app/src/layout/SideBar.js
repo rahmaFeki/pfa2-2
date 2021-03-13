@@ -8,7 +8,7 @@ function SideBar() {
 
 
     <div id="left-sidebar" className="sidebar">
-        <h5 className="brand-name">Ericsson<a href="javascript:void(0)" className="menu_option float-right"><i className="icon-grid font-16" data-toggle="tooltip" data-placement="left" title="" data-original-title="Grid &amp; List Toggle"></i></a></h5>
+        <h5 className="brand-name">Ericsson<a  className="menu_option float-right"><i className="icon-grid font-16" data-toggle="tooltip" data-placement="left" title="" data-original-title="Grid &amp; List Toggle"></i></a></h5>
         <ul className="nav nav-tabs">
             <li className="nav-item"><a className="nav-link active" data-toggle="tab" href="#menu-uni">University</a></li>
             <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#menu-admin">Admin</a></li>

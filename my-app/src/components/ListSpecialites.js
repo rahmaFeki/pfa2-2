@@ -124,7 +124,7 @@ class ListSpecialiteComponent extends Component {
                                             <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                 <ul className="right_chat list-unstyled w350 p-0">
                                                     <li className="online">
-                                                        <a href="javascript:void(0);" className="media">
+                                                        <a  className="media">
                                                             <img className="media-object" src="../assets/images/xs/avatar4.jpg" alt="" />
                                                             <div className="media-body">
                                                                 <span className="name">Donald Gardner</span>
@@ -135,7 +135,7 @@ class ListSpecialiteComponent extends Component {
                                                         </a>
                                                     </li>
                                                     <li className="online">
-                                                        <a href="javascript:void(0);" className="media">
+                                                        <a  className="media">
                                                             <img className="media-object " src="../assets/images/xs/avatar5.jpg" alt="" />
                                                             <div className="media-body">
                                                                 <span className="name">Wendy Keen</span>
@@ -146,7 +146,7 @@ class ListSpecialiteComponent extends Component {
                                                         </a>
                                                     </li>
                                                     <li className="offline">
-                                                        <a href="javascript:void(0);" className="media">
+                                                        <a  className="media">
                                                             <img className="media-object " src="../assets/images/xs/avatar2.jpg" alt="" />
                                                             <div className="media-body">
                                                                 <span className="name">Matt Rosales</span>
@@ -157,7 +157,7 @@ class ListSpecialiteComponent extends Component {
                                                         </a>
                                                     </li>
                                                     <li className="online">
-                                                        <a href="javascript:void(0);" className="media">
+                                                        <a  className="media">
                                                             <img className="media-object " src="../assets/images/xs/avatar3.jpg" alt="" />
                                                             <div className="media-body">
                                                                 <span className="name">Phillip Smith</span>
@@ -239,14 +239,14 @@ class ListSpecialiteComponent extends Component {
                                 <div className="tab-pane active" id="Student-all">
 
                                     <div className="card">
-                                        <div class="card-body">
-                                            <div class="row">
+                                        <div className="card-body">
+                                            <div className="row">
 
-                                                <div class="col-lg-10 col-md-8 col-sm-8">
+                                                <div className="col-lg-10 col-md-8 col-sm-8">
 
                                                 </div>
 
-                                                <div class="col-lg-2 col-md-4 col-sm-4">
+                                                <div className="col-lg-2 col-md-4 col-sm-4">
                                                     <ModelAddSpec libelle={this.state.libelle}
                                                         name={this.state.name} addSpecialite={this.saveSpecialite} changeHandlerLibelle={this.changeLibelleHandler}
                                                         changeHandlerDomaine={this.changeDomaineHandler} />
@@ -312,18 +312,18 @@ class ListSpecialiteComponent extends Component {
                     <div className="popover-content note-children-container">
                         <span><a target="_blank"></a>&nbsp;</span>
                         <div className="note-btn-group btn-group note-link">
-                            <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Edit"><i className="note-icon-link"></i></button>
-                            <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Unlink"><i className="note-icon-chain-broken"></i></button></div></div></div>
+                            <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Edit"><i className="note-icon-link"></i></button>
+                            <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Unlink"><i className="note-icon-chain-broken"></i></button></div></div></div>
                 <div className="note-popover popover in note-image-popover bottom">  <div className="arrow"></div>  <div className="popover-content note-children-container">
                     <div className="note-btn-group btn-group note-imagesize">
-                        <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Resize Full"><span className="note-fontsize-10">100%</span></button>
-                        <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Resize Half"><span className="note-fontsize-10">50%</span></button><button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Resize Quarter"><span className="note-fontsize-10">25%</span></button></div><div className="note-btn-group btn-group note-float">
-                        <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Float Left"><i className="note-icon-align-left"></i></button>
-                        <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Float Right"><i className="note-icon-align-right"></i></button>
-                        <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Float None">
+                        <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Resize Full"><span className="note-fontsize-10">100%</span></button>
+                        <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Resize Half"><span className="note-fontsize-10">50%</span></button><button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Resize Quarter"><span className="note-fontsize-10">25%</span></button></div><div className="note-btn-group btn-group note-float">
+                        <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Float Left"><i className="note-icon-align-left"></i></button>
+                        <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Float Right"><i className="note-icon-align-right"></i></button>
+                        <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Float None">
                             <i className="note-icon-align-justify"></i></button></div>
                     <div className="note-btn-group btn-group note-remove">
-                        <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Remove Image"><i className="note-icon-trash"></i></button></div></div></div>
+                        <button type="button" className="note-btn btn btn-default btn-sm"  title="" data-original-title="Remove Image"><i className="note-icon-trash"></i></button></div></div></div>
                 <div className="tooltip fade bs-tooltip-right" role="tooltip" id="tooltip848872" x-placement="right" style={{ position: "absolute" }}  ><div className="arrow" ></div><div className="tooltip-inner">Inbox</div></div>
             </div>
         )
