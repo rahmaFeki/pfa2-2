@@ -1,4 +1,5 @@
 import React, {  useState } from "react";
+import { useHistory } from "react-router";
 import { Modal,Button } from 'react-bootstrap';
 import DomaineService from '../services/DomaineService'
 function ModelUpdateDomaine(props) {
@@ -6,11 +7,15 @@ function ModelUpdateDomaine(props) {
   const handleClose = () => setShow(false);
 
   const handleShow = () => setShow(true);
- 
+  const history = useHistory();
   const editDomaine = () => {
+
     let domaine = {idDomaine:props.updatedId, nom: props.updatedLibelle };
 DomaineService.updateDomaine(domaine,props.updatedId ).then( res => {
-    props.redirect.push('/domaines');
+  history.push({
+    pathname:  "/domaines"
+ 
+ });
 });
 }
   return (

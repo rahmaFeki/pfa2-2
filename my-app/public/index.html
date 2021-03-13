@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
-  
+   
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -29,7 +29,7 @@
 <!-- Plugins css -->
 <link rel="stylesheet" href="%PUBLIC_URL%/assets/plugins/summernote/dist/summernote.css"/>
 
-<link rel="stylesheet" href="%PUBLIC_URL%/assets/plugins/sweetalert/sweetalert.css">
+
 <!-- Core css -->
 <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/style.min.css"/>
 <style>
@@ -40,20 +40,10 @@
      color:white;
   }
   .btnAddSpec{
-    display: inline-block; box-shadow: none;
+    display: inline-block; 
+    box-shadow: none;
     background-color: #6c757d;
     color:white;
-  }
-  #sweetAlert{
-    display: block; 
-    margin-top: -165px;
-  }
-  #btnCancel{
-    display: inline-block; box-shadow: none;
-  }
-  #btnDelete{
-  display: inline-block; background-color: rgb(220, 53, 69); box-shadow: rgba(220, 53, 69, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset;
-
   }
 </style>
     <title>React App</title>
@@ -72,8 +62,7 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 <script src="%PUBLIC_URL%/assets/bundles/lib.vendor.bundle.js"></script>
-<script src="%PUBLIC_URL%/assets/plugins/sweetalert/sweetalert.min.js"></script>
-<script src="%PUBLIC_URL%/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
 <!-- Start all plugin js -->
 <script src="%PUBLIC_URL%/assets/bundles/counterup.bundle.js"></script>
 <script src="%PUBLIC_URL%/assets/bundles/apexcharts.bundle.js"></script>
@@ -81,9 +70,7 @@
 
 <!-- Start project main js  and page js -->
 <script src="%PUBLIC_URL%/assets/js/core.js"></script>
-<script src="%PUBLIC_URL%assets/js/page/dialogs.js"></script>
 <script src="%PUBLIC_URL%/assets/js/page/index.js"></script>
 <script src="%PUBLIC_URL%/assets/js/page/summernote.js"></script>
-
   </body>
 </html>

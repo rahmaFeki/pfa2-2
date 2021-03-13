@@ -11,7 +11,7 @@ import LeftSideBar from './layout/SideBar';
 function App() {
   return (
   <div>
-    <div className="page-loader-wrapper" style={{display: "none;"}}>
+    <div className="page-loader-wrapper" style={{display: "none"}}>
     <div className="loader">
     </div>
 </div>
@@ -22,7 +22,7 @@ function App() {
     <LeftSideBar />
     <Switch> 
     <Route path = "/"  exact component = {ListDomaineComponent}></Route>
-                        
+                   
                           <Route path = "/domaines"  component = {ListDomaineComponent}></Route>
                           <Route path = "/formateurs"  component = {ListFormateur}></Route>
                           <Route path = "/add-domaine" component = {CreateDomaine}></Route>

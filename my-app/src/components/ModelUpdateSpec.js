@@ -1,5 +1,6 @@
 import React, {  useState } from "react";
 import { Modal,Button } from 'react-bootstrap';
+import { useHistory } from "react-router";
 import SpecialiteService from '../services/SpecialiteService'
 function ModelUpdateSpec(props) {
   const [show, setShow] = useState(false);
@@ -10,7 +11,10 @@ function ModelUpdateSpec(props) {
   const editSpec = () => {
     let specialite = {idSpecialite:props.idSpecialite, libelle:props.updatedLibelle, domaine: props.updatedName };
 SpecialiteService.updateSpecialite(specialite).then( res => {
-    props.redirect.push('/specialites');
+  history.push({
+    pathname:  "/specialites"
+ 
+ });
 });
 }
   return (

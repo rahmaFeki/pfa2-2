@@ -7,6 +7,7 @@ class ListFormateurs extends Component {
         super(props)
 
         this.state = {
+                idFormateur:'',
                 formateurs: [],
                 cin: '',
                 nom: '',
@@ -16,7 +17,7 @@ class ListFormateurs extends Component {
                 email: '',
                 mp: '',
                 salaire: '',
-                diponibilites:'Voir plus',
+                
         }
         this.saveFormateur = this.saveFormateur.bind(this);
         this.changeCinHandler = this.changeCinHandler.bind(this);
@@ -54,6 +55,7 @@ class ListFormateurs extends Component {
     saveFormateur = () => {
         //e.preventDefault();
         let formateur = {
+            idFormateur:this.state.idFormateur,
             cin: this.state.cin,
             nom: this.state.nom,
             prenom: this.state.prenom,
@@ -61,9 +63,8 @@ class ListFormateurs extends Component {
             tel: this.state.tel,
             email: this.state.email,
             mp: this.state.mp,
-            salaire:this.state.salaire,
-            diponibilites:'Voir plus',
-
+            salaire:this.state.salaire
+     
         };
         console.log('formateur => ' + JSON.stringify(formateur));
 
