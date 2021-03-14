@@ -1,11 +1,12 @@
-import React, {  useState } from "react";
+import React, {  useState, useEffect} from "react";
 import { Modal,Button } from 'react-bootstrap';
 import { useHistory } from "react-router";
-import SpecialiteService from '../services/SpecialiteService'
+import SpecialiteService from '../services/SpecialiteService';
+import DomaineService from '../services/DomaineService';
 function ModelUpdateSpec(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-
+  const [domaines, setDomaines] = useState([]);
   const handleShow = () => setShow(true);
   const history = useHistory();
   const editSpec = () => {
@@ -17,6 +18,12 @@ SpecialiteService.updateSpecialite(specialite).then( res => {
  });
 });
 }
+useEffect(() => {
+  DomaineService.getDomaines().then((res) => {
+    setDomaines( res.data );
+  
+});
+  });
   return (
     <>
    <button type="button" className="btn btn-icon btn-sm" title="Edit" onClick={handleShow}><i className="fa fa-edit"></i></button>
@@ -41,8 +48,14 @@ SpecialiteService.updateSpecialite(specialite).then( res => {
                                                     <select class="form-control input-height" name="gender"  value = {props.name} 
                                                     onChange = {props.changeHandlerName}>
                                                     <option value="">Select...</option>
-                                                    <option value="Category 1">Male</option>
-                                                    <option value="Category 2">Female</option>
+                                                    {
+                                                    domaines.map(
+                                                        domaine =>
+                                                         
+                                                                <option value= {domaine.idDomaine}>{domaine.nom}</option> 
+                                                
+                                                    )
+                                                }
                                                 </select>
                                                 </div>
                                             </div>
