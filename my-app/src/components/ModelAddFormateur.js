@@ -18,8 +18,8 @@ function ModelAddFormateur(props) {
     ||document.getElementById('genre').value===''||document.getElementById('tel').value===''||document.getElementById('email').value===''||document.getElementById('mp').value===''){
      setMsgError('Tous les champs sont obligatoires');
     }
-    else {
-      props.saveFormateur();   
+    else{
+      props.saveFormateur();
    handleClose();
     }
    }
