@@ -1,33 +1,30 @@
 import React, {  useState } from "react";
+import { useHistory } from "react-router";
 import { Modal,Button } from 'react-bootstrap';
-function ModelAddFormateur(props) {
+import FormateurService from '../services/FormateurService'
+function ModelUpdateFormateur(props) {
   const [show, setShow] = useState(false);
-  const [msgError, setMsgError] = useState('');
   const handleClose = () => setShow(false);
 
+  const handleShow = () => setShow(true);
+  const history = useHistory();
+  const editFormateur = () => {
 
+    let formateur = {idUser:props.updatedId, nom: props.updatedNom };
+FormateurService.updateFormateur(formateur).then( res => {
+  history.push({
+    pathname:  "/formateurs"
  
-  function handleShow (){
-    setMsgError('');
-    setShow(true);
-   
-  }
-  function handleSubmit() {
-    
-    if(document.getElementById('nom').value===''||document.getElementById('cin').value===''||document.getElementById('prenom').value===''
-    ||document.getElementById('genre').value===''||document.getElementById('tel').value===''||document.getElementById('email').value===''||document.getElementById('mp').value===''){
-     setMsgError('Tous les champs sont obligatoires');
-    }
-    else
-   handleClose();
-   }
+ });
+});
+}
   return (
     <>
-    <button type="button" class="btn btn-primary" onClick={handleShow}><i class="fa fa-plus mr-2"></i>Formateur</button>
+   <button type="button" className="btn btn-icon btn-sm" title="Edit" onClick={handleShow}><i className="fa fa-edit"></i></button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show } onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Ajouter Formateur</Modal.Title>
+          <Modal.Title>Mise à jour Domaine</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <div className="row clearfix"> <div className="col-md-1 col-sm-2"> </div>  <div className="col-md-6 col-sm-6 error"> 
@@ -65,8 +62,8 @@ function ModelAddFormateur(props) {
                                              <select class="form-control input-height" id="genre" name="gender"  value = {props.genre} 
                                                     onChange = {props.changeHandlerGenre}>
                                                     <option value="">Select...</option>
-                                                    <option value="Homme">Homme</option>
-                                                    <option value="Femme">Femme</option>
+                                                    <option value="Category 1">Homme</option>
+                                                    <option value="Category 2">Femme</option>
                                                 </select>
                                          </div>
                                      </div>
@@ -111,7 +108,7 @@ function ModelAddFormateur(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => {handleSubmit();  props.saveFormateur();}}>
+          <Button variant="primary" onClick={() => {handleClose(); editDomaine();}}>
             Enregistrer
           </Button>
         </Modal.Footer>
@@ -119,4 +116,4 @@ function ModelAddFormateur(props) {
     </>
   );
 }
-export default ModelAddFormateur;
+export default ModelUpdateDomaine;

@@ -35,7 +35,7 @@ class ListFormateurs extends Component {
 
     deleteFormateur(id){
         FormateurService.deleteFormateur(id).then( res => {
-            this.setState({formateurs: this.state.formateurs.filter(Formateur => Formateur.id !== id)});
+            this.setState({formateurs: this.state.formateurs.filter(Formateur => Formateur.idUser !== id)});
         });
     }
     viewFormateur(id){
