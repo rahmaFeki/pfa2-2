@@ -90,7 +90,7 @@ class ListFormateurs extends Component {
         this.setState({email: event.target.value});
     }
     changeMpHandler= (event) => {
-        this.setState({mp: event.target.value});
+        this.setState({motdepasse: event.target.value});
     }
     changeSalaireHandler= (event) => {
         this.setState({salaire: event.target.value});
