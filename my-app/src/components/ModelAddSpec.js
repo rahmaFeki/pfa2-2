@@ -1,11 +1,17 @@
-import React, {  useState } from "react";
+import React, {  useState,useEffect } from "react";
 import { Modal,Button } from 'react-bootstrap';
+import DomaineService from '../services/DomaineService'
 function ModelAddSpec(props) {
   const [show, setShow] = useState(false);
-
+  const [domaines, setDomaines] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  useEffect(() => {
+    DomaineService.getDomaines().then((res) => {
+      setDomaines( res.data );
+    
+  });
+    });
   return (
     <>
     <button type="button" class="btn btn-primary" onClick={handleShow}><i class="fa fa-plus mr-2"></i>Spécialité</button>
@@ -29,8 +35,17 @@ function ModelAddSpec(props) {
                                                     <select class="form-control input-height" name="gender"  value = {props.domaine} 
                                                     onChange = {props.changeHandlerDomaine}>
                                                     <option value="">Select...</option>
-                                                    <option value="Category 1">Male</option>
-                                                    <option value="Category 2">Female</option>
+                                                    
+                                                {
+                                                    domaines.map(
+                                                        domaine =>
+                                                         
+                                                                <option value= {domaine.idDomaine}>{domaine.nom}</option> 
+                                                
+                                                    )
+                                                }
+                                                   
+                                                
                                                 </select>
                                                 </div>
                                             </div>

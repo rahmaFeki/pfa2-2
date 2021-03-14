@@ -2,20 +2,19 @@ import React, { Component } from 'react'
 import SpecialiteService from '../services/SpecialiteService'
 import ModelAddSpec from './ModelAddSpec';
 import ModelUpdateSpec from './ModelUpdateSpec';
-import DataTableSpecialite from './DataTableSpecialite'
+
 class ListSpecialiteComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             Specialites: [],
-            nom: '',
+            idDomaine: '',
             libelle: '',
             updatedLibelle: '',
-            updatedName: ''
+            updatedIdDomaine: ''
         }
         this.saveSpecialite = this.saveSpecialite.bind(this);
-        this.redirectSpecialite = this.redirectSpecialite.bind(this);
         this.deleteSpecialite = this.deleteSpecialite.bind(this);
         this.changeLibelleHandler = this.changeLibelleHandler.bind(this);
         this.changeDomaineHandler = this.changeDomaineHandler.bind(this);
@@ -31,9 +30,7 @@ class ListSpecialiteComponent extends Component {
     viewSpecilite(id) {
         this.props.history.push(`/view-Specialite/${id}`);
     }
-    redirectSpecialite() {
-        this.props.history.push('/specialites');
-    }
+
 
     componentDidMount() {
         SpecialiteService.getSpecialites().then((res) => {
@@ -44,7 +41,7 @@ class ListSpecialiteComponent extends Component {
 
     saveSpecialite() {
         //this.props.history.push('/add-Specialite/_add');
-        let specialite = { libelle: this.state.libelle, name: this.state.name };
+        let specialite = { libelle: this.state.libelle, idDomaine: this.state.idDomaine };
         console.log('specialite => ' + JSON.stringify(specialite));
 
         SpecialiteService.createSpecialite(specialite).then(res => {
@@ -56,14 +53,14 @@ class ListSpecialiteComponent extends Component {
     }
 
     changeDomaineHandler = (event) => {
-        this.setState({ name: event.target.value });
+        this.setState({ idDomaine: event.target.value });
     }
     changeLibelleHandlerUpdate = (event) => {
         this.setState({ updatedLibelle: event.target.value });
     }
 
     changeNameHandlerUpdate = (event) => {
-        this.setState({ updatedName: event.target.value });
+        this.setState({ updatedIdDomaine: event.target.value });
     }
     render() {
         return (
@@ -248,7 +245,7 @@ class ListSpecialiteComponent extends Component {
 
                                                 <div className="col-lg-2 col-md-4 col-sm-4">
                                                     <ModelAddSpec libelle={this.state.libelle}
-                                                        name={this.state.name} addSpecialite={this.saveSpecialite} changeHandlerLibelle={this.changeLibelleHandler}
+                                                        name={this.state.idDomaine} addSpecialite={this.saveSpecialite} changeHandlerLibelle={this.changeLibelleHandler}
                                                         changeHandlerDomaine={this.changeDomaineHandler} />
                                                 </div>
                                             </div>
@@ -279,7 +276,7 @@ class ListSpecialiteComponent extends Component {
                                                                 <td>
                                                                     <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
                                                                     <ModelUpdateSpec updatedLibelle={this.state.updatedLibelle} idSpecialite={spec.idSpecialite} 
-                                                                        updatedName={this.state.updatedName} changeHandlerNameUpdate={this.changeNameHandlerUpdate}
+                                                                        updatedName={this.state.updatedIdDomaine} changeHandlerNameUpdate={this.changeNameHandlerUpdate}
                                                                         changeHandlerLibelleUpdate={this.changeLibelleHandlerUpdate} />
                                                                     <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteSpecialite(spec.idSpecialite)} ><i className="fa fa-trash-o text-danger"></i></button>
                                                                 </td>
