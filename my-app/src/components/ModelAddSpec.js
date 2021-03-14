@@ -6,12 +6,7 @@ function ModelAddSpec(props) {
   const [domaines, setDomaines] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  useEffect(() => {
-    DomaineService.getDomaines().then((res) => {
-      setDomaines( res.data );
-    
-  });
-    });
+
   return (
     <>
     <button type="button" class="btn btn-primary" onClick={handleShow}><i class="fa fa-plus mr-2"></i>Spécialité</button>
@@ -37,12 +32,12 @@ function ModelAddSpec(props) {
                                                     <option value="">Select...</option>
                                                     
                                                 {
-                                                    domaines.map(
-                                                        domaine =>
+                                                    props.domaines.map(
+                                                        domaine =>(
                                                          
-                                                                <option value= {domaine.idDomaine}>{domaine.nom}</option> 
+                                                                <option key={domaine.idDomaine} value= {domaine.idDomaine}>{domaine.nom}</option> 
                                                 
-                                                    )
+                                                    ))
                                                 }
                                                    
                                                 

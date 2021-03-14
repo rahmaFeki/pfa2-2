@@ -21,6 +21,7 @@ SpecialiteService.updateSpecialite(specialite).then( res => {
 useEffect(() => {
   DomaineService.getDomaines().then((res) => {
     setDomaines( res.data );
+    console.log(domaines[0]);
   
 });
   });
@@ -52,7 +53,7 @@ useEffect(() => {
                                                     domaines.map(
                                                         domaine =>
                                                          
-                                                                <option value= {domaine.idDomaine}>{domaine.nom}</option> 
+                                                                <option key={domaine.idDomaine} value= {domaine.idDomaine} >{domaine.nom}</option> 
                                                 
                                                     )
                                                 }

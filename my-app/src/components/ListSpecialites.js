@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SpecialiteService from '../services/SpecialiteService'
+import DomaineService from '../services/DomaineService'
 import ModelAddSpec from './ModelAddSpec';
 import ModelUpdateSpec from './ModelUpdateSpec';
 
@@ -9,6 +10,7 @@ class ListSpecialiteComponent extends Component {
 
         this.state = {
             Specialites: [],
+            domaines: [],
             idDomaine: '',
             libelle: '',
             updatedLibelle: '',
@@ -37,6 +39,11 @@ class ListSpecialiteComponent extends Component {
             this.setState({ Specialites: res.data });
             console.log(this.state.Specialites);
         });
+        DomaineService.getDomaines().then((res) => {
+            this.setState({ domaines:res.data });
+          
+        });  
+        
     }
 
     saveSpecialite() {
@@ -244,7 +251,7 @@ class ListSpecialiteComponent extends Component {
                                                 </div>
 
                                                 <div className="col-lg-2 col-md-4 col-sm-4">
-                                                    <ModelAddSpec libelle={this.state.libelle}
+                                                    <ModelAddSpec domaines={this.state.domaines} libelle={this.state.libelle}
                                                         name={this.state.idDomaine} addSpecialite={this.saveSpecialite} changeHandlerLibelle={this.changeLibelleHandler}
                                                         changeHandlerDomaine={this.changeDomaineHandler} />
                                                 </div>
@@ -271,7 +278,7 @@ class ListSpecialiteComponent extends Component {
                                                         spec =>
                                                             <tr key={spec.idSpecialite}>
                                                                 <td> {spec.libelle}  </td>
-                                                                <td> {spec.domaine.nom} </td>
+                                                                <td> Object.values(spec.domaine)[1] </td>
 
                                                                 <td>
                                                                     <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
