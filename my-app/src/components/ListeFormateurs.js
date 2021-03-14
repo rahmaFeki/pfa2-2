@@ -331,7 +331,7 @@ class ListFormateurs extends Component {
                                                                 <td>
                                                                     <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
                                                           
-                                                                    <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteDomaine(formateur.idUser)} ><i className="fa fa-trash-o text-danger"></i></button>
+                                                                    <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteFormateur(formateur.idUser)} ><i className="fa fa-trash-o text-danger"></i></button>
                                                                 </td>
                                                             </tr>
 
