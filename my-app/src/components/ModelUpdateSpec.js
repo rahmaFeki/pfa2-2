@@ -18,13 +18,7 @@ SpecialiteService.updateSpecialite(specialite).then( res => {
  });
 });
 }
-useEffect(() => {
-  DomaineService.getDomaines().then((res) => {
-    setDomaines( res.data );
-    console.log(domaines[0]);
-  
-});
-  });
+
   return (
     <>
    <button type="button" className="btn btn-icon btn-sm" title="Edit" onClick={handleShow}><i className="fa fa-edit"></i></button>
@@ -50,7 +44,7 @@ useEffect(() => {
                                                     onChange = {props.changeHandlerName}>
                                                     <option value="">Select...</option>
                                                     {
-                                                    domaines.map(
+                                                    props.domaines.map(
                                                         domaine =>
                                                          
                                                                 <option key={domaine.idDomaine} value= {domaine.idDomaine} >{domaine.nom}</option> 

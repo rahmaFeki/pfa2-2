@@ -282,7 +282,7 @@ class ListSpecialiteComponent extends Component {
 
                                                                 <td>
                                                                     <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
-                                                                    <ModelUpdateSpec updatedLibelle={this.state.updatedLibelle} idSpecialite={spec.idSpecialite} 
+                                                                    <ModelUpdateSpec domaines={this.state.domaines} updatedLibelle={this.state.updatedLibelle} idSpecialite={spec.idSpecialite} 
                                                                         updatedName={this.state.updatedIdDomaine} changeHandlerNameUpdate={this.changeNameHandlerUpdate}
                                                                         changeHandlerLibelleUpdate={this.changeLibelleHandlerUpdate} />
                                                                     <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteSpecialite(spec.idSpecialite)} ><i className="fa fa-trash-o text-danger"></i></button>
