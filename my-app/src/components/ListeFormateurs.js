@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import FormateurService from '../services/FormateurService'
 import ModelAddFormateur from '../components/ModelAddFormateur'
-import DataTableFormateur from '../components/DataTableFormateur'
+
 class ListFormateurs extends Component {
     constructor(props) {
         super(props)
@@ -55,7 +55,7 @@ class ListFormateurs extends Component {
     saveFormateur = () => {
         //e.preventDefault();
         let formateur = {
-            idUser:this.state.idUser,
+            idUser:1,
             cin: this.state.cin,
             nom: this.state.nom,
             prenom: this.state.prenom,
@@ -280,15 +280,16 @@ class ListFormateurs extends Component {
                                 
                               </div>
                               <div className="col-lg-2 col-md-2 col-sm-2">
-                              <ModelAddFormateur idUser={this.state.idUser}  cin = {this.state.cin} 
+                              <ModelAddFormateur   cin = {this.state.cin} 
                                             nom = {this.state.nom} genre = {this.state.genre} 
                                             prenom = {this.state.prenom} tel = {this.state.tel} 
                                             mp = {this.state.motdepasse}   email= {this.state.email} salaire = {this.state.salaire}
                                             changeHandlerCin= {this.changeCinHandler}
+                                            changeHandlerMp= {this.changeMpHandler}
                                             changeHandlerNom= {this.changeNomHandler}
                                             changeHandlerPrenom= {this.changePrenomHandler} 
                                             changeHandlerGenre= {this.changeGenreHandler} changeHandlerTel= {this.changeTelHandler}
-                                            changeHandlerEmail= {this.changeEmailHandler} changeHandlerMp= {this.changeMpHandler}
+                                            changeHandlerEmail= {this.changeEmailHandler} 
                                             changeHandlerSalaire= {this.changeSalaireHandler} saveFormateur={this.saveFormateur}/>
                               
                               </div>
