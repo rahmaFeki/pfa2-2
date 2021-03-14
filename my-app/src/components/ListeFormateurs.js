@@ -7,7 +7,7 @@ class ListFormateurs extends Component {
         super(props)
 
         this.state = {
-                idFormateur:'',
+                idUser:'',
                 formateurs: [],
                 cin: '',
                 nom: '',
@@ -15,7 +15,7 @@ class ListFormateurs extends Component {
                 genre: '',
                 tel: '',
                 email: '',
-                mp: '',
+                motdepasse: '',
                 salaire: '',
                 
         }
@@ -55,14 +55,14 @@ class ListFormateurs extends Component {
     saveFormateur = () => {
         //e.preventDefault();
         let formateur = {
-            idFormateur:this.state.idFormateur,
+            idUser:this.state.idUser,
             cin: this.state.cin,
             nom: this.state.nom,
             prenom: this.state.prenom,
             genre: this.state.genre,
             tel: this.state.tel,
             email: this.state.email,
-            mp: this.state.mp,
+            motdepasse: this.state.motdepasse,
             salaire:this.state.salaire
      
         };
@@ -280,10 +280,10 @@ class ListFormateurs extends Component {
                                 
                               </div>
                               <div className="col-lg-2 col-md-2 col-sm-2">
-                              <ModelAddFormateur cin = {this.state.cin} 
+                              <ModelAddFormateur idUser={this.state.idUser}  cin = {this.state.cin} 
                                             nom = {this.state.nom} genre = {this.state.genre} 
                                             prenom = {this.state.prenom} tel = {this.state.tel} 
-                                            mp = {this.state.mp}   email= {this.state.email} salaire = {this.state.salaire}
+                                            mp = {this.state.motdepasse}   email= {this.state.email} salaire = {this.state.salaire}
                                             changeHandlerCin= {this.changeCinHandler}
                                             changeHandlerNom= {this.changeNomHandler}
                                             changeHandlerPrenom= {this.changePrenomHandler} 
@@ -297,11 +297,51 @@ class ListFormateurs extends Component {
                       </div>
                       
                   </div>
+                  <div className="table-responsive card">
+                                        <table className="table table-hover table-vcenter table-striped mb-0 text-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th style={{ width: "20%" }}>Num Identité</th>
+                                                    <th style={{ width: "20%" }}>Nom</th>
+                                                    <th style={{ width: "20%" }}>Prenom</th>
+                                                    <th style={{ width: "20%" }}>Genre</th>
+                                                    <th style={{ width: "20%" }}>Tel</th>
+                                                    <th style={{ width: "20%" }}>Email</th>
+                                                    <th style={{ width: "20%" }}>Salaire</th>
+                                                    <th >Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
 
-                  <div className="card">
-                     <DataTableFormateur formateurs={this.state.formateurs} />
-                  </div>
+                                                {
+                                                    this.state.formateurs.map(
+                                                        formateur =>
+                                                            <tr key={formateur.idUser}>
+                                                                <td> {formateur.cin} </td>
+                                                                <td> {formateur.nom} </td>
+                                                                <td> {formateur.prenom} </td>
+                                                                <td> {formateur.genre} </td>
+                                                                <td> {formateur.tel} </td>
+                                                                <td> {formateur.email} </td>
+                                                                <td> {formateur.salaire} </td>
+
+                                                                <td>
+                                                                    <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
+                                                          
+                                                                    <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteDomaine(formateur.idUser)} ><i className="fa fa-trash-o text-danger"></i></button>
+                                                                </td>
+                                                            </tr>
+
+                                                    )
+                                                }
+                                                                          
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
               </div>
 
             </div>

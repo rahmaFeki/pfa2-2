@@ -9,7 +9,7 @@ function ModelUpdateDomaine(props) {
   const handleShow = () => setShow(true);
   const history = useHistory();
   const editDomaine = () => {
-document.getElementById('label').value="hhhh";
+
     let domaine = {idDomaine:props.updatedId, nom: props.updatedLibelle };
 DomaineService.updateDomaine(domaine,props.updatedId ).then( res => {
   history.push({
