@@ -309,6 +309,7 @@ class ListFormateurs extends Component {
                                                     <th style={{ width: "20%" }}>Tel</th>
                                                     <th style={{ width: "20%" }}>Email</th>
                                                     <th style={{ width: "20%" }}>Salaire</th>
+                                                    <th style={{ width: "20%" }}>Disponibilités</th>
                                                     <th >Action</th>
                                                 </tr>
                                             </thead>
@@ -326,7 +327,7 @@ class ListFormateurs extends Component {
                                                                 <td> {formateur.tel} </td>
                                                                 <td> {formateur.email} </td>
                                                                 <td> {formateur.salaire} </td>
-
+                                                                <td> Voir plus </td>
                                                                 <td>
                                                                     <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
                                                           
