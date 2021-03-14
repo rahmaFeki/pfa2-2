@@ -46,13 +46,13 @@ class ListSpecialiteComponent extends Component {
         
     }
 
-    saveSpecialite() {
+    async saveSpecialite() {
         //this.props.history.push('/add-Specialite/_add');
-        let specialite = { libelle: this.state.libelle, idDomaine: this.state.idDomaine };
+        let specialite = { idSpecialite: 1 , libelle: this.state.libelle, domaine: { idDomaine: this.state.idDomaine } };
         console.log('specialite => ' + JSON.stringify(specialite));
 
         SpecialiteService.createSpecialite(specialite).then(res => {
-            this.props.history.push('/specialite');
+            this.props.history.push('/specialites');
         });
     }
     changeLibelleHandler = (event) => {
@@ -278,7 +278,8 @@ class ListSpecialiteComponent extends Component {
                                                         spec =>
                                                             <tr key={spec.idSpecialite}>
                                                                 <td> {spec.libelle}  </td>
-                                                                <td> Object.values(spec.domaine)[1] </td>
+                                                                <td> {Object.values(spec.domaine)[1]} </td>
+
 
                                                                 <td>
                                                                     <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>

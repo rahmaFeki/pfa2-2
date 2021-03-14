@@ -27,7 +27,7 @@ function ModelAddSpec(props) {
                                             <div className="col-md-6 col-sm-12">
                                                 <div className="form-group">
                                                     <label>Domaine</label>
-                                                    <select class="form-control input-height" name="gender"  value = {props.domaine} 
+                                                    <select class="form-control input-height" name="gender"  value = {props.name} 
                                                     onChange = {props.changeHandlerDomaine}>
                                                     <option value="">Select...</option>
                                                     
