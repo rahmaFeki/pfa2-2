@@ -18,8 +18,10 @@ function ModelAddFormateur(props) {
     ||document.getElementById('genre').value===''||document.getElementById('tel').value===''||document.getElementById('email').value===''||document.getElementById('mp').value===''){
      setMsgError('Tous les champs sont obligatoires');
     }
-    else
+    else{
+      props.saveFormateur();
    handleClose();
+    }
    }
   return (
     <>
@@ -111,7 +113,7 @@ function ModelAddFormateur(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => {handleSubmit();  props.saveFormateur();}}>
+          <Button variant="primary" onClick={() => {handleSubmit();  }}>
             Enregistrer
           </Button>
         </Modal.Footer>
