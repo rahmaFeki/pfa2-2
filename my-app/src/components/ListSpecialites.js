@@ -62,19 +62,24 @@ class ListSpecialiteComponent extends Component {
     changeDomaineHandler = (event) => {
         this.setState({ idDomaine: event.target.value });
     }
-    changeLibelleHandlerUpdate = (event) => {
-        this.setState({ updatedLibelle: event.target.value });
+    changeLibelleHandlerUpdate = (event,id) => {
+        
+      //  this.setState({ updatedIdDomaine: event.target.value });
+       this.state.Specialites.filter(specialite => specialite.idSpecialite === id).map(filteredSpec => (
+    
+        filteredSpec.libelle=event.target.value
+         ))
     }
 
     changeNameHandlerUpdate = (event,id) => {
       //  this.setState({ updatedIdDomaine: event.target.value });
-      this.setState({ Specialites: this.state.specialites.filter(specialite => specialite.idSpecialite === id).map(filteredSpec => (
+       this.state.Specialites.filter(specialite => specialite.idSpecialite === id).map(filteredSpec => (
     
          filteredSpec['domaine']['idDomaine']=event.target.value
           ))
-      })
+      }
      
-    }
+    
     render() {
         return (
             <div>
@@ -285,12 +290,12 @@ class ListSpecialiteComponent extends Component {
                                                             <tr key={spec.idSpecialite}>
                                                                 <td> {spec.libelle}  </td>
                                                                 <td> {Object.values(spec.domaine)[1]} </td>
-
+                                                               
                                                                 <td>
                                                                     <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
-                                                                    <ModelUpdateSpec domaines={this.state.domaines} updatedLibelle={this.state.updatedLibelle} idSpecialite={spec.idSpecialite} 
-                                                                        updatedName={this.state.specialites} changeHandlerNameUpdate={this.changeNameHandlerUpdate,spec.idSpecialite}
-                                                                        changeHandlerLibelleUpdate={this.changeLibelleHandlerUpdate} />
+                                                                    <ModelUpdateSpec domaines={this.state.domaines} updatedLibelle={this.state.Specialites} idSpecialite={spec.idSpecialite} 
+                                                                        updatedName={this.state.Specialites} changeHandlerNameUpdate={this.changeNameHandlerUpdate(spec.idSpecialite)}
+                                                                        changeHandlerLibelleUpdate={this.changeLibelleHandlerUpdate(spec.idSpecialite)} />
                                                                     <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteSpecialite(spec.idSpecialite)} ><i className="fa fa-trash-o text-danger"></i></button>
                                                                 </td>
                                                             </tr>

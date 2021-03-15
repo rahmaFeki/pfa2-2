@@ -10,7 +10,7 @@ function ModelUpdateSpec(props) {
   const handleShow = () => setShow(true);
   const history = useHistory();
   const editSpec = () => {
-    let specialite = {idSpecialite:props.idSpecialite, libelle:props.updatedLibelle, domaine: {idDomaine:props.updatedName} };
+    let specialite = {idSpecialite:props.idSpecialite, libelle:props.updatedLibelle, domaine: {idDomaine:5} };
 
     SpecialiteService.updateSpecialite(specialite).then( res => {
   history.push({
@@ -35,15 +35,20 @@ function ModelUpdateSpec(props) {
                                                 <div className="form-group">
                                                     <label>Libellé</label>
                                                     <input type="text" className="form-control"  
-                                                    value= {props.updatedLibelle} onChange = {props.changeHandlerLibelleUpdate}  />
+                                                    value={props.updatedLibelle.filter(specialite => specialite.idSpecialite === props.idSpecialite).map(filteredSpec => (
+    
+                                                      filteredSpec.libelle
+                                                         ))
+                                                                  } onChange = {props.changeHandlerLibelle}  />
                                                 </div>
                                             </div>
+                                            
                                             <div className="col-md-6 col-sm-12">
                                             <div className="form-group">
                                                     <label>Domaine</label>
-                                                    <select class="form-control input-height" name="gender"  value = {props.name.filter(specialite => specialite.idSpecialite === props.idSpecialite).map(filteredSpec => (
+                                                    <select class="form-control input-height" name="gender"  value = {props.updatedName.filter(specialite => specialite.idSpecialite === props.idSpecialite).map(filteredSpec => (
     
-                                            Object.values(filteredSpec.domaine)[1]
+                                            Object.values(filteredSpec.domaine)[0]
                                                ))
                                                         }
                                                     onChange = {props.changeHandlerName}>
