@@ -10,8 +10,9 @@ function ModelUpdateSpec(props) {
   const handleShow = () => setShow(true);
   const history = useHistory();
   const editSpec = () => {
-    let specialite = {idSpecialite:props.idSpecialite, libelle:props.updatedLibelle, domaine: props.updatedName };
-SpecialiteService.updateSpecialite(specialite).then( res => {
+    let specialite = {idSpecialite:props.idSpecialite, libelle:props.updatedLibelle, domaine: {idDomaine:props.updatedName} };
+
+    SpecialiteService.updateSpecialite(specialite).then( res => {
   history.push({
     pathname:  "/specialites"
  
@@ -40,7 +41,11 @@ SpecialiteService.updateSpecialite(specialite).then( res => {
                                             <div className="col-md-6 col-sm-12">
                                             <div className="form-group">
                                                     <label>Domaine</label>
-                                                    <select class="form-control input-height" name="gender"  value = {props.name} 
+                                                    <select class="form-control input-height" name="gender"  value = {props.name.filter(specialite => specialite.idSpecialite === props.idSpecialite).map(filteredSpec => (
+    
+                                            Object.values(filteredSpec.domaine)[1]
+                                               ))
+                                                        }
                                                     onChange = {props.changeHandlerName}>
                                                     <option value="">Select...</option>
                                                     {
