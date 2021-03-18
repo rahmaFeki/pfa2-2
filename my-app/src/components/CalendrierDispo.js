@@ -13,12 +13,14 @@ let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of tod
 export const INITIAL_EVENTS = [
     {
       id: createEventId(),
-      title: 'All-day event',
-      start: '2021-03-12 15:20'
+      title: '',
+      start: '2021-03-12 15:20',
+      end: '2021-03-15 15:20'
+
     },
     {
       id: createEventId(),
-      title: 'Timed event',
+      title: '',
       start: '2021-03-14 14:20',
       end: '2021-03-17 14:20'
     }
@@ -250,15 +252,15 @@ export default class CalendrierDispo extends Component {
     right: 'dayGridMonth,timeGridWeek,timeGridDay'
   }}
   initialView='dayGridMonth'
-  editable={false}
-  selectable={false}
-  selectMirror={false}
+  
   dayMaxEvents={true}
   weekends={this.state.weekendsVisible}
   initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
   //select={this.handleDateSelect}
-  eventContent={renderEventContent} // custom render function
+ 
+ 
   //eventClick={this.handleEventClick}
+ 
   //eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
   /* you can update a remote database when these fire:
   eventAdd={function(){}}
@@ -295,9 +297,9 @@ function renderEventContent(eventInfo) {
   return (
     <>
     <div className="fc-event-container">
-        <div className="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-info fc-draggable fc-resizable"><div className="fc-content"> 
+        <div className=" fc-h-event fc-event  fc-end bg-info"><div className="fc-content"> 
         <span className="bgevent">{eventInfo.timeText}</span></div>
-    <div className="fc-resizer fc-end-resizer"></div></div></div>
+   </div></div>
  
     </>
   )
