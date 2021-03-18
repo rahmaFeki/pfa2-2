@@ -85,8 +85,7 @@ class ListSpecialiteComponent extends Component {
             <div>
 
 
-                <div className="page">
-
+             
                     <div className="section-body" id="page_top">
                         <div className="container-fluid">
                             <div className="page-header">
@@ -316,7 +315,7 @@ class ListSpecialiteComponent extends Component {
                         </div>
                     </div>
 
-                </div>
+            
 
 
 

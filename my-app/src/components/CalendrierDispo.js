@@ -1,110 +1,64 @@
 import React, { Component } from 'react'
-import FormateurService from '../services/FormateurService'
-import ModelAddFormateur from '../components/ModelAddFormateur'
-import { BrowserRouter as Router, Route, Link,NavLink } from "react-router-dom";
-class ListFormateurs extends Component {
+import FullCalendar, { formatDate } from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
+
+import "./styleDispo.css"
+import DisponibilitesService from '../services/DisponibilitesService'
+
+
+// add styles as css
+let eventGuid = 0
+let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
+export const INITIAL_EVENTS = [
+    {
+      id: createEventId(),
+      title: 'All-day event',
+      start: '2021-03-12 15:20'
+    },
+    {
+      id: createEventId(),
+      title: 'Timed event',
+      start: '2021-03-14 14:20',
+      end: '2021-03-17 14:20'
+    }
+  ]
+  
+  export function createEventId() {
+    return String(eventGuid++)
+  }
+export default class CalendrierDispo extends Component {
     constructor(props) {
-        super(props)
-
+        //super is used to access the variables
+        super(props);
         this.state = {
-                idUser:'',
-                formateurs: [],
-                cin: '',
-                nom: '',
-                prenom: '',
-                genre: '',
-                tel: '',
-                email: '',
-                motdepasse: '',
-                salaire: '',
-                
+            id: this.props.match.params.id,
+           disponibilites: [{
+            id: 1,
+            title: 'All-day event',
+            start: '2021-03-17'
+          }],
+           weekendsVisible: true,
+           currentEvents: []
         }
-        this.saveFormateur = this.saveFormateur.bind(this);
-        this.changeCinHandler = this.changeCinHandler.bind(this);
-        this.changeNomHandler = this.changeNomHandler.bind(this);
-        this.changePrenomHandler = this.changePrenomHandler.bind(this);
-        this.changeGenreHandler = this.changeGenreHandler.bind(this);
-        this.changeTelHandler = this.changeTelHandler.bind(this);
-        this.changeEmailHandler = this.changeEmailHandler.bind(this);
-        this.changeMpHandler = this.changeMpHandler.bind(this);
-        this.changeSalaireHandler = this.changeSalaireHandler.bind(this);
-      
-        this.editFormateur = this.editFormateur.bind(this);
-        this.deleteFormateur = this.deleteFormateur.bind(this);
-    }
-
-    deleteFormateur(id){
-        FormateurService.deleteFormateur(id).then( res => {
-            this.setState({formateurs: this.state.formateurs.filter(Formateur => Formateur.idUser !== id)});
-        });
-    }
-    viewFormateur(id){
-        this.props.history.push(`/view-Formateur/${id}`);
-    }
-    editFormateur(id){
-        this.props.history.push(`/add-Formateur/${id}`);
-    }
-
-    componentDidMount(){
-        FormateurService.getFormateurs().then((res) => {
-            this.setState({ formateurs: res.data});
-            console.log(res.data);
-        });
-    }
-
-    saveFormateur = () => {
-        //e.preventDefault();
-        let formateur = {
-            idUser:1,
-            cin: this.state.cin,
-            nom: this.state.nom,
-            prenom: this.state.prenom,
-            genre: this.state.genre,
-            tel: this.state.tel,
-            email: this.state.email,
-            motdepasse: this.state.motdepasse,
-            salaire:this.state.salaire
+       
+     }
+     componentDidMount() {
+        DisponibilitesService. getDisponibById(this.state.id).then((res) => {
+    
+      this.setState({ disponibilites : res.data });
      
-        };
-        console.log('formateur => ' + JSON.stringify(formateur));
-
-            FormateurService.createFormateur(formateur).then(res =>{
-                this.props.history.push('/formateurs');
-            });
-      
+    })
+  
     }
     
-    changeNomHandler= (event) => {
-        this.setState({nom: event.target.value});
-    }
-    changePrenomHandler= (event) => {
-        this.setState({prenom: event.target.value});
-    }
-    changeGenreHandler= (event) => {
-        this.setState({genre: event.target.value});
-    }
-    changeTelHandler= (event) => {
-        this.setState({tel: event.target.value});
-    }
-    changeEmailHandler= (event) => {
-        this.setState({email: event.target.value});
-    }
-    changeMpHandler= (event) => {
-        this.setState({motdepasse: event.target.value});
-    }
-    changeSalaireHandler= (event) => {
-        this.setState({salaire: event.target.value});
-    }
-    changeCinHandler= (event) => {
-        this.setState({cin: event.target.value});
-    }
-    render() {
-        return (
-<div>
 
- 
- 
-    <div className="section-body" id="page_top">
+
+  render() {
+    return (
+       
+
+        <div className="section-body" id="page_top">
         <div className="container-fluid">
             <div className="page-header">
                 <div className="left">                        
@@ -262,9 +216,7 @@ class ListFormateurs extends Component {
                 </div>
             </div>
         </div>
-    </div>
-
-
+   
     <div className="section-body mt-4">
         <div className="container-fluid">
             <div className="tab-content">
@@ -272,24 +224,14 @@ class ListFormateurs extends Component {
                 <div className="tab-pane active" id="gestion-Formateur">
                   
                   <div className="card">
-                  <div class="card-body">
-                          <div class="row">
+                  <div className="card-body">
+                          <div className="row">
   
                               <div className="col-lg-10 col-md-10 col-sm-10">
                                 
                               </div>
                               <div className="col-lg-2 col-md-2 col-sm-2">
-                              <ModelAddFormateur   cin = {this.state.cin} 
-                                            nom = {this.state.nom} genre = {this.state.genre} 
-                                            prenom = {this.state.prenom} tel = {this.state.tel} 
-                                            mp = {this.state.motdepasse}   email= {this.state.email} salaire = {this.state.salaire}
-                                            changeHandlerCin= {this.changeCinHandler}
-                                            changeHandlerMp= {this.changeMpHandler}
-                                            changeHandlerNom= {this.changeNomHandler}
-                                            changeHandlerPrenom= {this.changePrenomHandler} 
-                                            changeHandlerGenre= {this.changeGenreHandler} changeHandlerTel= {this.changeTelHandler}
-                                            changeHandlerEmail= {this.changeEmailHandler} 
-                                            changeHandlerSalaire= {this.changeSalaireHandler} saveFormateur={this.saveFormateur}/>
+                             
                               
                               </div>
                           
@@ -297,87 +239,67 @@ class ListFormateurs extends Component {
                       </div>
                       
                   </div>
-                  <div className="table-responsive card">
-                                        <table className="table table-hover table-vcenter table-striped mb-0 text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th style={{ width: "10%" }}>Num Identité</th>
-                                                    <th style={{ width: "20%" }}>Nom</th>
-                                                    <th style={{ width: "20%" }}>Prenom</th>
-                                                    <th style={{ width: "20%" }}>Genre</th>
-                                                    <th style={{ width: "20%" }}>Tel</th>
-                                                    <th style={{ width: "20%" }}>Email</th>
-                                                    <th style={{ width: "20%" }}>Salaire</th>
-                                                      <th style={{ width: "20%" }}>Salaire</th>
-                                                      <td>disponibilites</td>
-                                                    <th >Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-
-                                                {
-                                                    this.state.formateurs.map(
-                                                        formateur =>
-                                                            <tr key={formateur.idUser}>
-                                                                <td> {formateur.cin} </td>
-                                                                <td> {formateur.nom} </td>
-                                                                <td> {formateur.prenom} </td>
-                                                                <td> {formateur.genre} </td>
-                                                                <td> {formateur.tel} </td>
-                                                                <td> {formateur.email} </td>
-                                                                <td> {formateur.salaire} </td>
-                                                                
-                                                               <td><NavLink to={'/disponibilites/'+formateur.idUser} activeStyle={{ fontWeight: '600' }}>Voir plus</NavLink></td>
-                                                                <td>
-                                                                    <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
-                                                          
-                                                                    <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteFormateur(formateur.idUser)} ><i className="fa fa-trash-o text-danger"></i></button>
-                                                                </td>
-                                                            </tr>
-
-                                                    )
-                                                }
-                                                                          
-
-
-
-                                            </tbody>
-                                        </table>
+                  <div className=" card">
+                  <div className=" card-body">
+                  <div className="fc fc-unthemed fc-ltr " id="calendar">
+           <FullCalendar
+  plugins={[dayGridPlugin, timeGridPlugin]}
+  headerToolbar={{
+    left: 'prev,next today',
+    center: 'title',
+    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+  }}
+  initialView='dayGridMonth'
+  editable={false}
+  selectable={false}
+  selectMirror={false}
+  dayMaxEvents={true}
+  weekends={this.state.weekendsVisible}
+  initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+  //select={this.handleDateSelect}
+  eventContent={renderEventContent} // custom render function
+  //eventClick={this.handleEventClick}
+  //eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
+  /* you can update a remote database when these fire:
+  eventAdd={function(){}}
+  eventChange={function(){}}
+  eventRemove={function(){}}
+  */
+/>
+</div>
+</div>
                                     </div>
               </div>
 
             </div>
         </div>
     </div>
-  
-   
+    </div>
+       
+    )
+  }
 
 
 
+  handleWeekendsToggle = () => {
+    this.setState({
+      weekendsVisible: !this.state.weekendsVisible
+    })
+  }
 
 
-<div className="note-popover popover in note-link-popover bottom"> 
-<div className="arrow"></div>  
-<div className="popover-content note-children-container">
- <span><a target="_blank"></a>&nbsp;</span>
- <div className="note-btn-group btn-group note-link">
-     <button type="button" className="note-btn btn btn-default btn-sm" ><i className="note-icon-link"></i></button>
-     <button type="button" className="note-btn btn btn-default btn-sm" ><i className="note-icon-chain-broken"></i></button></div></div></div>
-     <div className="note-popover popover in note-image-popover bottom">  <div className="arrow"></div>  <div className="popover-content note-children-container">
-         <div className="note-btn-group btn-group note-imagesize">
-             <button type="button" className="note-btn btn btn-default btn-sm" ><span className="note-fontsize-10">100%</span></button>
-             <button type="button" className="note-btn btn btn-default btn-sm" ><span className="note-fontsize-10">50%</span></button><button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Resize Quarter"><span className="note-fontsize-10">25%</span></button></div><div className="note-btn-group btn-group note-float">
-                 <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Float Left"><i className="note-icon-align-left"></i></button>
-                 <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Float Right"><i className="note-icon-align-right"></i></button>
-                 <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Float None">
-         <i className="note-icon-align-justify"></i></button></div>
-         <div className="note-btn-group btn-group note-remove">
-             <button type="button" className="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Remove Image"><i className="note-icon-trash"></i></button></div></div></div>
-             <div className="tooltip fade bs-tooltip-right" role="tooltip" id="tooltip848872" x-placement="right" style={{position:"absolute"}}  ><div className="arrow" ></div><div className="tooltip-inner">Inbox</div></div>
-</div>
-        )
-    }
+
 }
 
-export default ListFormateurs
+function renderEventContent(eventInfo) {
+  return (
+    <>
+    <div className="fc-event-container">
+        <div className="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-info fc-draggable fc-resizable"><div className="fc-content"> 
+        <span className="bgevent">{eventInfo.timeText}</span></div>
+    <div className="fc-resizer fc-end-resizer"></div></div></div>
+ 
+    </>
+  )
+}
+

@@ -49,7 +49,7 @@ function ModelAddSpec(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+           Fermer
           </Button>
           <Button variant="primary" onClick={() => {handleClose(); props.addSpecialite();}}>
             Enregistrer

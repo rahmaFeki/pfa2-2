@@ -26,7 +26,7 @@ function ModelAddDomaine(props) {
   return (
     
     <>
-    <button type="button" class="btn btn-primary" onClick={handleShow}><i class="fa fa-plus mr-2"></i>Domaine</button>
+    <button type="button" className="btn btn-primary" onClick={handleShow}><i className="fa fa-plus mr-2"></i>Domaine</button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -38,15 +38,8 @@ function ModelAddDomaine(props) {
         </div></div>
         <div className="row clearfix">
         
-                                            <div className="col-md-6 col-sm-12">
-                                             
-                                                <div className="form-group">
-                                                    <label>Référence</label>
-                                                    <input type="text" className="form-control"  
-                                                    value= {props.id} required onChange = {props.changeHandlerId}  />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 col-sm-12">
+                                    
+                                            <div className="col-md-12 col-sm-12">
                                                 <div className="form-group">
                                                     <label>Libellé</label>
                                                     <input type="text" className="form-control" id="libelle" value = {props.libelle} onChange = {props.changeHandlerLibelle}  />
@@ -57,7 +50,7 @@ function ModelAddDomaine(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Fermer
           </Button>
           <Button variant="primary" onClick={() => {handleSubmit();  props.addDomaine(); }} type="submit">
             Enregistrer

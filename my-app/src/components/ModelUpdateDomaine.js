@@ -47,7 +47,7 @@ DomaineService.updateDomaine(domaine,props.updatedId ).then( res => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Fermer
           </Button>
           <Button variant="primary" onClick={() => {handleClose(); editDomaine();}}>
             Enregistrer

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DomaineService from '../services/DomaineService'
 import ModelAddDomaine from '../components/ModelAddDomaine'
+import ModelDeleteDomaine from '../components/ModelDeleteDomaine'
 import ModelUpdateDomaine from '../components/ModelUpdateDomaine'
 class ListDomaineComponent extends Component {
     constructor(props) {
@@ -19,7 +20,6 @@ class ListDomaineComponent extends Component {
         this.changeIdHandler = this.changeIdHandler.bind(this);
         this.changeLibelleHandlerUpdate = this.changeLibelleHandlerUpdate.bind(this);
         this.changeIdHandlerUpdate = this.changeIdHandlerUpdate.bind(this);
-
         this.deleteDomaine = this.deleteDomaine.bind(this);
     }
 
@@ -38,6 +38,7 @@ class ListDomaineComponent extends Component {
             this.setState({ domaines: res.data });
             console.log(res.data);
         });
+        this.setState({ domaines: [{idDomaine:1,nom:'develop web'}] });
     }
 
     saveDomaine = () => {
@@ -71,7 +72,7 @@ class ListDomaineComponent extends Component {
             <div>
 
 
-                <div className="page">
+                
 
                     <div className="section-body" id="page_top">
                         <div className="container-fluid">
@@ -284,7 +285,9 @@ class ListDomaineComponent extends Component {
                                                                     <ModelUpdateDomaine updatedLibelle={this.state.updatedLibelle} 
                                                                         updatedId={this.state.updatedId} changeHandlerIdUpdate={this.changeIdHandlerUpdate}
                                                                         changeHandlerLibelleUpdate={this.changeLibelleHandlerUpdate} />
-                                                                    <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteDomaine(domaine.idDomaine)} ><i className="fa fa-trash-o text-danger"></i></button>
+                                                                   
+                                                                   <ModelDeleteDomaine id={domaine.idDomaine} deleteDomaine={this.deleteDomaine} />
+                                                                   
                                                                 </td>
                                                             </tr>
 
@@ -303,7 +306,7 @@ class ListDomaineComponent extends Component {
                         </div>
                     </div>
 
-                </div>
+              
 
 
 

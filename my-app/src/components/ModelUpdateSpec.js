@@ -69,7 +69,7 @@ function ModelUpdateSpec(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Fermer
           </Button>
           <Button variant="primary" onClick={() => {handleClose(); editSpec();}}>
             Enregistrer
