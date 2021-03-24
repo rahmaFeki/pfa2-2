@@ -1,26 +1,28 @@
 import React, {  useState } from "react";
-import { useHistory } from "react-router";
+
 import { Modal,Button } from 'react-bootstrap';
 import DomaineService from '../services/DomaineService'
 function ModelUpdateDomaine(props) {
   const [show, setShow] = useState(false);
+  const [updatedLibelle, setUpdatedLibelle] = useState(props.updatedLibelle);
   const handleClose = () => setShow(false);
 
   const handleShow = () => setShow(true);
-  const history = useHistory();
-  const editDomaine = () => {
-
-    let domaine = {idDomaine:props.updatedId, nom: props.updatedLibelle };
-DomaineService.updateDomaine(domaine,props.updatedId ).then( res => {
-  history.push({
-    pathname:  "/domaines"
- 
- });
+  
+  const changeLibelleHandler = (event) => {
+    setUpdatedLibelle( event.target.value );
+}
+  const  editDomaine = () => {
+    
+    let domaine = {idDomaine:props.updatedId, nom: updatedLibelle };
+DomaineService.updateDomaine(domaine ).then( res => {
+  props.handleUpdate(domaine)
 });
+
 }
   return (
     <>
-   <button type="button" className="btn btn-icon btn-sm" title="Edit" onClick={handleShow}><i className="fa fa-edit"></i></button>
+   <button type="button" className="btn btn-primary btn-sm" title="Edit" onClick={handleShow} style={{marginRight: '5px'}}><i className="fa fa-edit"></i></button>
 
       <Modal show={show } onHide={handleClose}>
         <Modal.Header closeButton>
@@ -29,17 +31,12 @@ DomaineService.updateDomaine(domaine,props.updatedId ).then( res => {
         <Modal.Body>
         <div className="row clearfix">
                                      
-                                            <div className="col-md-6 col-sm-12">
-                                                <div className="form-group">
-                                                    <label>Référence</label>
-                                                    <input type="text" className="form-control"  
-                                                    value= {props.updatedId} onChange = {props.changeHandlerIdUpdate}  />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 col-sm-12">
+                                 
+                                            <div className="col-md-12 col-sm-12">
                                                 <div className="form-group">
                                                     <label>Libellé</label>
-                                                    <input type="text" className="form-control" id="label" value = {props.updatedLibelle} onChange = {props.changeHandlerLibelleUpdate}  />
+     <input type="text" className="form-control" id="label" value = {updatedLibelle}
+                 onChange = {changeLibelleHandler}  />
                                                 </div>
                                             </div>
                                          

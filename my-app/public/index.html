@@ -28,7 +28,10 @@
 
 <!-- Plugins css -->
 <link rel="stylesheet" href="%PUBLIC_URL%/assets/plugins/summernote/dist/summernote.css"/>
-
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/plugins/datatable/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/plugins/datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css">
+<link rel="stylesheet" href="%PUBLIC_URL%/assets/plugins/datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css">
 <link rel="stylesheet" href="%PUBLIC_URL%/assets/plugins/sweetalert/sweetalert.css">
 <!-- Core css -->
 <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/style.min.css"/>
@@ -56,10 +59,17 @@
     margin: 2px auto 4px ;
 
 }
-.footer {
- 
- 
-   
+.dataTableD{
+  border-bottom: 2px solid #dee2e6;
+  font-size: 14px;
+  border-top: 0;
+    border-bottom-width: 1px;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: inherit;
+    color:gray;
 }
 </style>
     <title>React App</title>
@@ -88,5 +98,7 @@
 <script src="%PUBLIC_URL%/assets/js/core.js"></script>
 <script src="%PUBLIC_URL%/assets/js/page/index.js"></script>
 <script src="%PUBLIC_URL%/assets/js/page/summernote.js"></script>
+<script src="%PUBLIC_URL%/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="%PUBLIC_URL%/assets/bundles/dataTables.bundle.js"></script>
   </body>
 </html>

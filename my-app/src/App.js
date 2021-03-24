@@ -5,6 +5,7 @@ import NavBar from './layout/NavBar.js';
 import Footer from './layout/Footer.js';
 import ListDomaineComponent from './components/ListeDomaines.js';
 import ListSpecialiteComponent from './components/ListSpecialites.js';
+
 import ListFormateur from './components/ListeFormateurs.js';
 
 import CalendrierDispo from './components/CalendrierDispo.js';
@@ -24,10 +25,12 @@ function App() {
     <Switch> 
     <Route path = "/"  exact component = {ListDomaineComponent}></Route>
     <Route path = "/disponibilites/:id"  component = {CalendrierDispo}></Route>
+ 
                           <Route path = "/domaines"  component = {ListDomaineComponent}></Route>
                           <Route path = "/formateurs"  component = {ListFormateur}></Route>
                          
                           <Route path = "/specialites" component = {ListSpecialiteComponent}></Route>
+                          
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}
                     </Switch>
     <Footer />

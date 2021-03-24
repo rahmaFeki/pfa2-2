@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import SpecialiteService from '../services/SpecialiteService'
+import ReactDatatable from '@ashvin27/react-datatable';
 import DomaineService from '../services/DomaineService'
 import ModelAddSpec from './ModelAddSpec';
 import ModelUpdateSpec from './ModelUpdateSpec';
-
+import ModelDeleteSpecialite from './ModelDeleteSpecialite';
 class ListSpecialiteComponent extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             Specialites: [],
             domaines: [],
@@ -16,6 +16,73 @@ class ListSpecialiteComponent extends Component {
             updatedLibelle: '',
             updatedIdDomaine: ''
         }
+        this.columns = [
+            {
+                key: "idSpecialite",
+                text: "Identifiant",
+                className: "idSpecialite",
+                align: "left",
+                sortable: true,
+            },
+            {
+                key: "libelle",
+                text: "Libelle",
+                className: "libelle",
+                align: "left",
+                sortable: true
+            },
+            {
+                key: "nom",
+                text: "Domaine",
+                className: "nom",
+                align: "left",
+                sortable: true
+            },
+
+            {
+                key: "action",
+                text: "Action",
+                className: "action",
+                width: 100,
+                align: "left",
+                sortable: false,
+                cell: record => {
+                  
+                    return (
+                        <Fragment>
+                          
+                            <ModelUpdateSpec domaines={this.state.domaines} updatedLibelle={record.libelle} idSpecialite={record.idSpecialite} 
+                         updatedDomaine={ record.idDomaine} handleUpdate={this.handleUpdate}
+                           />
+
+                            <ModelDeleteSpecialite id={record.idSpecialite} deleteSpecialite={this.deleteSpecialite} />
+
+                        </Fragment>
+                    );
+                }
+            }
+        ];
+        this.config = {
+            page_size: 5,
+            length_menu: [10, 20, 50],
+            button: {
+                excel: false,
+                print: false,
+                extra: false,
+            },
+            language: {
+                length_menu: "",
+                filter: "Rechercher ...",
+                info: "Total _TOTAL_ entrées",
+                pagination: {
+                    first: "Premier",
+                    previous: "pre",
+                    next: "suiv",
+                    last: "dernier"
+                }
+            }
+        }
+
         this.saveSpecialite = this.saveSpecialite.bind(this);
         this.deleteSpecialite = this.deleteSpecialite.bind(this);
         this.changeLibelleHandler = this.changeLibelleHandler.bind(this);
@@ -29,30 +96,41 @@ class ListSpecialiteComponent extends Component {
             this.setState({ Specialites: this.state.Specialites.filter(Specialite => Specialite.idSpecialite !== id) });
         });
     }
-    viewSpecilite(id) {
-        this.props.history.push(`/view-Specialite/${id}`);
-    }
+
 
 
     componentDidMount() {
+        var specials=[]
         SpecialiteService.getSpecialites().then((res) => {
-            this.setState({ Specialites: res.data });
-            console.log(this.state.Specialites);
+            res.data.map(spec=>specials.push({'idSpecialite':spec.idSpecialite,'libelle':spec.libelle,'idDomaine':Object.values(spec.domaine)[0],'nom':Object.values(spec.domaine)[1]}))
+            console.log(specials);
+            this.setState({ Specialites: specials });
+           // console.log(this.state.Specialit);
         });
         DomaineService.getDomaines().then((res) => {
             this.setState({ domaines:res.data });
           
-        });  
+        }); 
+      
         
+    }
+    handleUpdate = (updatedSpec) =>{
+        this.setState({ Specialites:   this.state.Specialites .map(spec => {
+            if(spec.idSpecialite==updatedSpec.idSpecialite)
+                return {libelle:updatedSpec.libelle,idSpecialite:spec.idSpecialite,domaine:updatedSpec.domaine}
+            return spec
+        })
+    }) 
+     console.log(this.state.domaines)   
     }
 
     saveSpecialite() {
         //this.props.history.push('/add-Specialite/_add');
         let specialite = { idSpecialite: 1 , libelle: this.state.libelle, domaine: { idDomaine: this.state.idDomaine } };
-        console.log('specialite => ' + JSON.stringify(specialite));
-
+    
         SpecialiteService.createSpecialite(specialite).then(res => {
-            this.props.history.push('/specialites');
+          
+            this.setState({Specialites : [...this.state.Specialites, {'idSpecialite':res.data.idSpecialite,'libelle':res.data.libelle,'idDomaine':Object.values(res.data.domaine)[0],'nom':Object.values(res.data.domaine)[1]}]});  
         });
     }
     changeLibelleHandler = (event) => {
@@ -270,44 +348,26 @@ class ListSpecialiteComponent extends Component {
 
                                     </div>
 
-                                    <div className="table-responsive card">
-                                        <table className="table table-hover table-vcenter table-striped mb-0 text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th style={{ width: "50%" }}>Libellé</th>
-                                                    <th style={{ width: "80%" }}>Domaine</th>
+                                    <div className=" card">
+                                <div className="card-body">
+                              
+                          
+                                  <div class="row">
+                                  <div class="col-sm-12">
+                                    <ReactDatatable
+                                        className="table table-hover table-vcenter table-striped  text-nowrap "
+                                        tHeadClassName="dataTableD"
+                                        config={this.config}
+                                        records={this.state.Specialites}
+                                        columns={this.columns}
 
-                                                    <th >Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-
-                                                {
-                                                    this.state.Specialites.map(
-                                                        spec =>
-                                                            <tr key={spec.idSpecialite}>
-                                                                <td> {spec.libelle}  </td>
-                                                                <td> {Object.values(spec.domaine)[1]} </td>
-                                                               
-                                                                <td>
-                                                                    <button type="button" className="btn btn-icon btn-sm" title="View" ><i className="fa fa-eye"></i></button>
-                                                                    <ModelUpdateSpec domaines={this.state.domaines} updatedLibelle={this.state.Specialites} idSpecialite={spec.idSpecialite} 
-                                                                        updatedName={this.state.Specialites} changeHandlerNameUpdate={this.changeNameHandlerUpdate(spec.idSpecialite)}
-                                                                        changeHandlerLibelleUpdate={this.changeLibelleHandlerUpdate(spec.idSpecialite)} />
-                                                                    <button type="button" className="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm" onClick={() => this.deleteSpecialite(spec.idSpecialite)} ><i className="fa fa-trash-o text-danger"></i></button>
-                                                                </td>
-                                                            </tr>
-                                                    )
-                                                }
-
-
-
-
-                                            </tbody>
-                                        </table>
-                                        
-                                    </div>
+                                    />
+                                  
+                                  
+                                </div>
+                                </div>
+                                </div>
+                                </div>
                                 </div>
 
 

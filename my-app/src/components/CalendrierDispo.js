@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FullCalendar, { formatDate } from '@fullcalendar/react'
+import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 
@@ -14,15 +14,16 @@ export const INITIAL_EVENTS = [
     {
       id: createEventId(),
       title: '',
-      start: '2021-03-12 15:20',
-      end: '2021-03-15 15:20'
+      start: new Date("2021-03-22T12:30:00Z"),
+      end: new Date("2021-03-20T12:30:00Z")
+   
 
     },
     {
       id: createEventId(),
       title: '',
-      start: '2021-03-14 14:20',
-      end: '2021-03-17 14:20'
+      start: new Date("2021-03-27T12:30:00"),
+      end: new Date("2021-03-30T12:30:00")
     }
   ]
   
@@ -36,9 +37,7 @@ export default class CalendrierDispo extends Component {
         this.state = {
             id: this.props.match.params.id,
            disponibilites: [{
-            id: 1,
-            title: 'All-day event',
-            start: '2021-03-17'
+         
           }],
            weekendsVisible: true,
            currentEvents: []
@@ -46,12 +45,17 @@ export default class CalendrierDispo extends Component {
        
      }
      componentDidMount() {
+        
         DisponibilitesService. getDisponibById(this.state.id).then((res) => {
-    
-      this.setState({ disponibilites : res.data });
+           
+            this.setState({ disponibilites : res.data });
+
+     
+   
      
     })
   
+   
     }
     
 
@@ -255,7 +259,7 @@ export default class CalendrierDispo extends Component {
   
   dayMaxEvents={true}
   weekends={this.state.weekendsVisible}
-  initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+  events={this.state.disponibilites} // alternatively, use the `events` setting to fetch from a feed
   //select={this.handleDateSelect}
  
  

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const DISPONIBILITE_API_BASE_URL = "http://localhost:8031/api/disponibilites";
+const DISPONIBILITE_API_BASE_URL = "http://localhost:8009/api/disponibilites";
 
 class DisponibilitesService {
 

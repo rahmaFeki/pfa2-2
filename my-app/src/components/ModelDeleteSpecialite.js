@@ -1,7 +1,7 @@
 import React, {  useState } from "react";
 import { Modal,Button } from 'react-bootstrap';
 
-function ModelDeleteDomaine(props) {
+function ModelDeleteSpecialite(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -35,7 +35,7 @@ function ModelDeleteDomaine(props) {
           <div className="sa-placeholder" />
           <div className="sa-fix" />
         </div><div className="sa-icon sa-custom" style={{display: 'none'}} /><h2> Êtes vous sûr?</h2>
-        <p style={{display: 'block'}}>La suppression d'un domaine engendre la supression de toutes les spécialites qui lui sont liées!</p>
+       
         <fieldset>
           <input type="text" tabIndex={3} placeholder />
           <div className="sa-input-error" />
@@ -45,7 +45,7 @@ function ModelDeleteDomaine(props) {
         </div><div className="sa-button-container">
           <button className="cancel" tabIndex={2} style={{display: 'inline-block'}} onClick={handleClose}>Annuler</button>
           <div className="sa-confirm-button-container">
-            <button className="confirm" tabIndex={1} style={{display: 'inline-block', backgroundColor: 'rgb(220, 53, 69)', boxShadow: 'rgba(220, 53, 69, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset'}}   onClick={() => {  props.deleteDomaine(props.id); handleClose(); }} >Oui, supprimer!</button><div className="la-ball-fall">
+            <button className="confirm" tabIndex={1} style={{display: 'inline-block', backgroundColor: 'rgb(220, 53, 69)', boxShadow: 'rgba(220, 53, 69, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset'}}   onClick={() => {  props.deleteSpecialite(props.id); handleClose(); }} >Oui, supprimer!</button><div className="la-ball-fall">
               <div />
               <div />
               <div />
@@ -59,4 +59,4 @@ function ModelDeleteDomaine(props) {
     </>
   );
 }
-export default ModelDeleteDomaine;
+export default ModelDeleteSpecialite;
