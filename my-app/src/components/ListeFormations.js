@@ -1,35 +1,79 @@
 import React, { Component, Fragment } from 'react';
 import { render } from 'react-dom';
 import ReactDatatable from '@ashvin27/react-datatable';
-import ModelAddDomaine from '../components/ModelAddDomaine'
+import ModelAddFormation from '../components/ModelAddFormation'
 import ModelDeleteDomaine from '../components/ModelDeleteDomaine'
-import ModelUpdateDomaine from '../components/ModelUpdateDomaine'
-import DomaineService from '../services/DomaineService'
-
-class ListeDomaines extends Component {
+import ModelUpdateFormation from '../components/ModelUpdateFormation'
+import FormationService from '../services/FormationService'
+import { BrowserRouter as Router, Route, Link,NavLink } from "react-router-dom";
+class ListeFormations extends Component {
     constructor(props) {
         super(props);
-            this.saveDomaine = this.saveDomaine.bind(this);
-        this.changeLibelleHandler = this.changeLibelleHandler.bind(this);
-        this.changeIdHandler = this.changeIdHandler.bind(this);
-        this.deleteDomaine = this.deleteDomaine.bind(this);
+
        
         this.columns = [
             {
-                key: "idDomaine",
-                text: "Identifiant",
+                key: "nom",
+               
                 className: "idDomaine",
                 align: "left",
                 sortable: true,
+                cell: record => {
+                  
+                    return (
+                        <Fragment>
+     <img src=" " />
+                         </Fragment>
+                    );
+                }
             },
             {
                 key: "nom",
-                text: "Libelle",
+                text: "Nom",
+                className: "nom",
+                align: "left",
+                sortable: true,
+                cell: record => {
+                    return (
+                        <Link to={{
+                            pathname: '/sessions',
+                          
+                            state: {sessions: record.sessions,idFormation:record.idFormation}
+                          }}> {record.nom} </Link>
+                        
+                    );
+              
+                }
+            },
+            {
+                key: "niveau",
+                text: "Niveau",
                 className: "nom",
                 align: "left",
                 sortable: true
             },
-
+            
+            {
+                key: "objectif",
+                text: "Objectif",
+                className: "nom",
+                align: "left",
+                sortable: true
+            },
+            {
+                key: "prix",
+                text: "Prix",
+                className: "nom",
+                align: "left",
+                sortable: true
+            },    
+            {
+                key: "etat",
+                text: "Etat",
+                className: "nom",
+                align: "left",
+                sortable: true
+            },
             {
                 key: "action",
                 text: "Action",
@@ -42,11 +86,16 @@ class ListeDomaines extends Component {
                     return (
                         <Fragment>
                            
-                            <ModelUpdateDomaine
-                                updatedId={record.idDomaine} 
-                                updatedLibelle={record.nom}
+                            <ModelUpdateFormation
+                                updatedIdFormation={record.idFormation} 
+                                updatedNom={record.nom}
+                                updatedImg=''
+                                updatedObjectif={record.objectif}
+                                updatedNiveau={record.niveau}
+                                updatedEtat={record.etat}
+                                updatedPrix={record.prix}
                                 handleUpdate={this.handleUpdate}
-                                specialites={record.specialites}
+                                
                              
                                 />
 
@@ -79,22 +128,32 @@ class ListeDomaines extends Component {
         }
 
         this.state = {
-            domaines: [
+            formations: [
               
             ],
-            idDomaine: '',
-            nom: ''
+            img: '',
+            nom: '',
+            prix:'',
+            objectif:'',
+            niveau:'',
+            imgPreview:''
          
         }
         this.extraButtons = [
 
         ];
-
+        this.saveFormation = this.saveFormation.bind(this);
+        this.changeNomHandler = this.changeNomHandler.bind(this);
+        this.changeNiveauHandler = this.changeNiveauHandler.bind(this);
+        this.changeObjectifHandler = this.changeObjectifHandler.bind(this);
+        this.changePrixHandler = this.changePrixHandler.bind(this);
+        this.changeImgHandler = this.changeImgHandler.bind(this);
+        this.deleteFormation = this.deleteFormation.bind(this);
     }
 
-    deleteDomaine(idDomaine) {
+    deleteFormation(idDomaine) {
        
-        DomaineService.deleteDomaine(idDomaine).then(res => {
+        FormationService.deleteFormation(idDomaine).then(res => {
             this.setState({ domaines: this.state.domaines.filter(domaine => domaine.idDomaine !== idDomaine) });
         });
   
@@ -112,40 +171,63 @@ class ListeDomaines extends Component {
 
     componentDidMount() {
 
-        DomaineService.getDomaines().then((res) => {
-            this.setState({ domaines: res.data });
-           console.log(this.state.domaines)
+        FormationService.getFormations().then((res) => {
+            console.log(res)
+            this.setState({ formations: res.data });
+        
           
         });
        
     }
+    handleUpdate = (updatedFormation) =>{
+        this.setState({ formations:   this.state.formations .map(formation => {
+            if(formation.idFormation==updatedFormation.idFormation)
+                return {nom:updatedFormation.nom,idFormation:formation.idFormation,objectif:updatedFormation.objectif,niveau:updatedFormation.niveau,prix:updatedFormation.prix,etat:updatedFormation.etat}
+            return formation
+        })
+    }) 
+      
+    }
+     saveFormation = () => {
+        let formData = new FormData();
 
-     saveDomaine = () => {
+        formData.append('imgName', this.state.img);
+        formData.append('idFormation', this.state.idFormation);
+        formData.append('nom', this.state.nom);
+        formData.append('objectif', this.state.objectif);
+        formData.append('niveau', this.state.niveau);
+        formData.append('prix', this.state.prix);
+      
         //e.preventDefault();
-        let domaine = {idDomaine:
-            (this.state.domaines.length==0)?0:this.state.domaines[this.state.domaines.length-1].idDomaine+1,nom: this.state.nom };
-        console.log('domaine => ' + JSON.stringify(domaine));
+       /* let formation = {idFormation:
+            (this.state.formations.length==0)?0:this.state.formations[this.state.formations.length-1].idFormation+1,nom: this.state.nom, objectif:this.state.objectif,niveau:this.state.niveau,prix:this.state.prix,img:this.state.img };
+        console.log('formation=> ' + JSON.stringify(formation));*/
 
-        DomaineService.createDomaine(domaine).then(res => {
+        FormationService.createFormation(formData).then(res => {
           
           // this.state.domaines.push(domaine)
-          this.setState({domaines : [...this.state.domaines,res.data]});     
+          this.setState({formations : [...this.state.formations,res.data]});     
           
         });
 
     }
 
-    changeLibelleHandler = (event) => {
+    changeNomHandler = (event) => {
         this.setState({ nom: event.target.value });
     }
 
-    changeIdHandler = (event) => {
-        this.setState({ idDomaine: event.target.value });
+    changeNiveauHandler = (event) => {
+        this.setState({ niveau: event.target.value });
+    }
+    changePrixHandler = (event) => {
+        this.setState({ prix: event.target.value });
     }
 
-
-    changeIdHandlerUpdate = (event) => {
-        this.setState({ updatedId: event.target.value });
+    changeObjectifHandler = (event) => {
+        this.setState({ objectif: event.target.value });
+    }
+    changeImgHandler = (event) => {
+        this.setState({ img: event.target.files[0] });
     }
 
     render() {
@@ -330,9 +412,10 @@ class ListeDomaines extends Component {
 
                                             </div>
                                             <div className="col-lg-2 col-md-2 col-sm-2">
-                                                <ModelAddDomaine nom={this.state.nom}
-                                                    idDomaine={this.state.idDomaine} addDomaine={this.saveDomaine} changeHandlerId={this.changeIdHandler}
-                                                    changeHandlerLibelle={this.changeLibelleHandler} />
+                                                <ModelAddFormation nom={this.state.nom}
+                                                     saveFormation={this.saveFormation} changeHandlerNom={this.changeNomHandler}
+                                                    changeHandlerObjectif={this.changeObjectifHandler}  changeHandlerNiveau={this.changeNiveauHandler}   changeHandlerPrix={this.changePrixHandler}
+                                                    changeHandlerImg={this.changeImgHandler}  />
 
                                             </div>
 
@@ -352,7 +435,7 @@ class ListeDomaines extends Component {
                                         className="table table-hover table-vcenter table-striped  text-nowrap "
                                         tHeadClassName="dataTableD"
                                         config={this.config}
-                                        records={this.state.domaines}
+                                        records={this.state.formations}
                                         columns={this.columns}
 
                                     />
@@ -399,4 +482,4 @@ class ListeDomaines extends Component {
         )
     }
 }
-export default ListeDomaines
+export default ListeFormations

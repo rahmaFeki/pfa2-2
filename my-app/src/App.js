@@ -5,10 +5,11 @@ import NavBar from './layout/NavBar.js';
 import Footer from './layout/Footer.js';
 import ListDomaineComponent from './components/ListeDomaines.js';
 import ListSpecialiteComponent from './components/ListSpecialites.js';
-
+import FormateurSpecialite from './components/FormateurSpecialite.js';
 import ListFormateur from './components/ListeFormateurs.js';
-
+import ListeFormations from './components/ListeFormations.js';
 import CalendrierDispo from './components/CalendrierDispo.js';
+import CalendrierSession from './components/CalendrierSession.js';
 import LeftSideBar from './layout/SideBar';
 function App() {
   return (
@@ -24,13 +25,13 @@ function App() {
     <LeftSideBar />
     <Switch> 
     <Route path = "/"  exact component = {ListDomaineComponent}></Route>
-    <Route path = "/disponibilites/:id"  component = {CalendrierDispo}></Route>
- 
+    <Route path = "/disponiblites"  component = {CalendrierDispo}></Route>
+    <Route path = "/sessions"  component = {CalendrierSession}></Route>
                           <Route path = "/domaines"  component = {ListDomaineComponent}></Route>
                           <Route path = "/formateurs"  component = {ListFormateur}></Route>
-                         
+                          <Route path = "/specialites_formateur"  component = {FormateurSpecialite}></Route>
                           <Route path = "/specialites" component = {ListSpecialiteComponent}></Route>
-                          
+                          <Route path = "/formations" component = {ListeFormations}></Route>
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}
                     </Switch>
     <Footer />

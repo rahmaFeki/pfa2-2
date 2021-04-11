@@ -5,6 +5,7 @@ import DomaineService from '../services/DomaineService'
 function ModelUpdateDomaine(props) {
   const [show, setShow] = useState(false);
   const [updatedLibelle, setUpdatedLibelle] = useState(props.updatedLibelle);
+ 
   const handleClose = () => setShow(false);
 
   const handleShow = () => setShow(true);
@@ -15,6 +16,7 @@ function ModelUpdateDomaine(props) {
   const  editDomaine = () => {
     
     let domaine = {idDomaine:props.updatedId, nom: updatedLibelle };
+    console.log(domaine)
 DomaineService.updateDomaine(domaine ).then( res => {
   props.handleUpdate(domaine)
 });
@@ -22,7 +24,7 @@ DomaineService.updateDomaine(domaine ).then( res => {
 }
   return (
     <>
-   <button type="button" className="btn btn-primary btn-sm" title="Edit" onClick={handleShow} style={{marginRight: '5px'}}><i className="fa fa-edit"></i></button>
+   <button type="button" className="btn btn-primary btn-sm" title="Edit" onClick={handleShow}  style={{marginRight: '5px'}}><i className="fa fa-edit"></i></button>
 
       <Modal show={show } onHide={handleClose}>
         <Modal.Header closeButton>
@@ -30,7 +32,7 @@ DomaineService.updateDomaine(domaine ).then( res => {
         </Modal.Header>
         <Modal.Body>
         <div className="row clearfix">
-                                     
+                                  
                                  
                                             <div className="col-md-12 col-sm-12">
                                                 <div className="form-group">

@@ -15,7 +15,9 @@ class SpecialiteService {
     getSpecialiteById(specialiteId){
         return axios.get(SPECIALITE_API_BASE_URL + '/' + specialiteId);
     }
-
+    deleteSpecialiteByDomaine(domaineId){
+        return axios.delete(SPECIALITE_API_BASE_URL + '/delete/' + domaineId);
+    }
     updateSpecialite(Specialite){
         return axios.put(SPECIALITE_API_BASE_URL, Specialite);
     }

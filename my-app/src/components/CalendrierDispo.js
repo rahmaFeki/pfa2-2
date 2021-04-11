@@ -46,16 +46,9 @@ export default class CalendrierDispo extends Component {
      }
      componentDidMount() {
         
-        DisponibilitesService. getDisponibById(this.state.id).then((res) => {
-           
-            this.setState({ disponibilites : res.data });
 
-     
-   
-     
-    })
   
-   
+   console.log(this.props.location.state.disponibilites)
     }
     
 
@@ -259,7 +252,7 @@ export default class CalendrierDispo extends Component {
   
   dayMaxEvents={true}
   weekends={this.state.weekendsVisible}
-  events={this.state.disponibilites} // alternatively, use the `events` setting to fetch from a feed
+  events={this.props.location.state.disponibilites} // alternatively, use the `events` setting to fetch from a feed
   //select={this.handleDateSelect}
  
  

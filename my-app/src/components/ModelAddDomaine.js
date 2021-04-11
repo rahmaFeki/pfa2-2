@@ -28,7 +28,7 @@ function ModelAddDomaine(props) {
     <>
     <button type="button" className="btn btn-primary" onClick={handleShow}><i className="fa fa-plus mr-2"></i>Domaine</button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} class="sweet-alert">
         <Modal.Header closeButton>
           <Modal.Title>Ajouter Domaine</Modal.Title>
         </Modal.Header>

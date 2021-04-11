@@ -22,6 +22,7 @@ function SideBar() {
                         <li> <NavLink to="/domaines" activeStyle={{ fontWeight: '600' }}><i className="fa fa-book"></i><span>Gestion Domaines</span></NavLink></li>
                         <li ><NavLink to="/specialites" activeStyle={{ fontWeight: '600' }}><i className="fa fa-users"></i><span>Gestion Spécialités </span></NavLink></li>
                         <li><NavLink to="/formateurs" activeStyle={{ fontWeight: '600' }}><i className="fa fa-user-circle-o"></i><span>Gestion Formateurs</span></NavLink></li>
+                        <li><NavLink to="/formations" activeStyle={{ fontWeight: '600' }}><i className="fa fa-users"></i><span>Gestion Formations</span></NavLink></li>
                         <li><a href="professors.html"><i className="fa fa-black-tie"></i><span>Professors</span></a></li>
                         
                         <li className="active"><a href="students.html"><i className="fa fa-users"></i><span>Students</span></a></li>

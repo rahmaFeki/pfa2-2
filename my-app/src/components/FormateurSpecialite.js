@@ -6,55 +6,23 @@ import ModelDeleteDomaine from '../components/ModelDeleteDomaine'
 import ModelUpdateDomaine from '../components/ModelUpdateDomaine'
 import DomaineService from '../services/DomaineService'
 
-class ListeDomaines extends Component {
+
+class FormateurSpecialite extends Component {
     constructor(props) {
         super(props);
-            this.saveDomaine = this.saveDomaine.bind(this);
-        this.changeLibelleHandler = this.changeLibelleHandler.bind(this);
-        this.changeIdHandler = this.changeIdHandler.bind(this);
-        this.deleteDomaine = this.deleteDomaine.bind(this);
+
        
         this.columns = [
-            {
-                key: "idDomaine",
-                text: "Identifiant",
-                className: "idDomaine",
-                align: "left",
-                sortable: true,
-            },
-            {
-                key: "nom",
-                text: "Libelle",
-                className: "nom",
-                align: "left",
-                sortable: true
-            },
+   
 
             {
-                key: "action",
-                text: "Action",
+                key: "libelle",
+                text: "Libellé",
                 className: "action",
-                width: 100,
+                width: 40,
                 align: "left",
                 sortable: false,
-                cell: record => {
-                  
-                    return (
-                        <Fragment>
-                           
-                            <ModelUpdateDomaine
-                                updatedId={record.idDomaine} 
-                                updatedLibelle={record.nom}
-                                handleUpdate={this.handleUpdate}
-                                specialites={record.specialites}
-                             
-                                />
-
-                            <ModelDeleteDomaine id={record.idDomaine} deleteDomaine={this.deleteDomaine} />
-
-                        </Fragment>
-                    );
-                }
+           
             }
         ];
         this.config = {
@@ -78,75 +46,10 @@ class ListeDomaines extends Component {
             }
         }
 
-        this.state = {
-            domaines: [
-              
-            ],
-            idDomaine: '',
-            nom: ''
-         
-        }
-        this.extraButtons = [
-
-        ];
 
     }
 
-    deleteDomaine(idDomaine) {
-       
-        DomaineService.deleteDomaine(idDomaine).then(res => {
-            this.setState({ domaines: this.state.domaines.filter(domaine => domaine.idDomaine !== idDomaine) });
-        });
-  
-    }
-    handleUpdate = (updatedDomaine) =>{
-        this.setState({ domaines:   this.state.domaines .map(domaine => {
-            if(domaine.idDomaine==updatedDomaine.idDomaine)
-                return {nom:updatedDomaine.nom,idDomaine:domaine.idDomaine}
-            return domaine
-        })
-    }) 
-      
-    }
 
-
-    componentDidMount() {
-
-        DomaineService.getDomaines().then((res) => {
-            this.setState({ domaines: res.data });
-           console.log(this.state.domaines)
-          
-        });
-       
-    }
-
-     saveDomaine = () => {
-        //e.preventDefault();
-        let domaine = {idDomaine:
-            (this.state.domaines.length==0)?0:this.state.domaines[this.state.domaines.length-1].idDomaine+1,nom: this.state.nom };
-        console.log('domaine => ' + JSON.stringify(domaine));
-
-        DomaineService.createDomaine(domaine).then(res => {
-          
-          // this.state.domaines.push(domaine)
-          this.setState({domaines : [...this.state.domaines,res.data]});     
-          
-        });
-
-    }
-
-    changeLibelleHandler = (event) => {
-        this.setState({ nom: event.target.value });
-    }
-
-    changeIdHandler = (event) => {
-        this.setState({ idDomaine: event.target.value });
-    }
-
-
-    changeIdHandlerUpdate = (event) => {
-        this.setState({ updatedId: event.target.value });
-    }
 
     render() {
         return (
@@ -326,14 +229,9 @@ class ListeDomaines extends Component {
                                     <div className="card-body">
                                         <div className="row">
 
-                                            <div className="col-lg-10 col-md-10 col-sm-10">
-
-                                            </div>
-                                            <div className="col-lg-2 col-md-2 col-sm-2">
-                                                <ModelAddDomaine nom={this.state.nom}
-                                                    idDomaine={this.state.idDomaine} addDomaine={this.saveDomaine} changeHandlerId={this.changeIdHandler}
-                                                    changeHandlerLibelle={this.changeLibelleHandler} />
-
+                                           
+                                            <div className="col-lg-8 col-md-8 col-sm-8">
+                                               <h6>Spécialites De :{this.props.location.state.nom}</h6>
                                             </div>
 
                                         </div>
@@ -352,7 +250,7 @@ class ListeDomaines extends Component {
                                         className="table table-hover table-vcenter table-striped  text-nowrap "
                                         tHeadClassName="dataTableD"
                                         config={this.config}
-                                        records={this.state.domaines}
+                                        records={this.props.location.state.specialites}
                                         columns={this.columns}
 
                                     />
@@ -399,4 +297,4 @@ class ListeDomaines extends Component {
         )
     }
 }
-export default ListeDomaines
+export default FormateurSpecialite
