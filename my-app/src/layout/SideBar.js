@@ -23,20 +23,8 @@ function SideBar() {
                         <li ><NavLink to="/specialites" activeStyle={{ fontWeight: '600' }}><i className="fa fa-users"></i><span>Gestion Spécialités </span></NavLink></li>
                         <li><NavLink to="/formateurs" activeStyle={{ fontWeight: '600' }}><i className="fa fa-user-circle-o"></i><span>Gestion Formateurs</span></NavLink></li>
                         <li><NavLink to="/formations" activeStyle={{ fontWeight: '600' }}><i className="fa fa-users"></i><span>Gestion Formations</span></NavLink></li>
-                        <li><a href="professors.html"><i className="fa fa-black-tie"></i><span>Professors</span></a></li>
-                        
-                        <li className="active"><a href="students.html"><i className="fa fa-users"></i><span>Students</span></a></li>
-                        <li><a href="departments.html"><i className="fa fa-users"></i><span>Departments</span></a></li>
-                        <li><a href="courses.html"><i className="fa fa-graduation-cap"></i><span>Courses</span></a></li>                        
-                        <li><a href="library.html"><i className="fa fa-book"></i><span>Library</span></a></li>
-                        <li><a href="holiday.html"><i className="fa fa-bullhorn"></i><span>Holiday</span></a></li>
-                        <li className="g_heading">Extra</li>
-                        <li><a href="events.html"><i className="fa fa-calendar"></i><span>Calender</span></a></li>
-                        <li><a href="app-chat.html"><i className="fa fa-comments-o"></i><span>Chat App</span></a></li>
-                        <li><a href="app-contact.html"><i className="fa fa-address-book"></i><span>Contact</span></a></li>
-                        <li><a href="app-filemanager.html"><i className="fa fa-folder"></i><span>FileManager</span></a></li>
-                        <li><a href="our-centres.html"><i className="fa fa-map"></i><span>OurCentres</span></a></li>
-                        <li><a href="gallery.html"><i className="fa fa-camera-retro"></i><span>Gallery</span></a></li>
+          
+              
                     </ul>
                 </nav>
                

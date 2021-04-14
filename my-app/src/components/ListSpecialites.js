@@ -126,10 +126,10 @@ class ListSpecialiteComponent extends Component {
 
     saveSpecialite() {
         //this.props.history.push('/add-Specialite/_add');
-        let specialite = { idSpecialite: 1 , libelle: this.state.libelle, domaine: { idDomaine: this.state.idDomaine } };
+        let specialite = { idSpecialite: (this.state.Specialites.length==0)?0:this.state.Specialites[this.state.Specialites.length-1].idSpecialite+1 , libelle: this.state.libelle, domaine: { idDomaine: this.state.idDomaine } };
     
         SpecialiteService.createSpecialite(specialite).then(res => {
-          
+          console.log(res.data)
             this.setState({Specialites : [...this.state.Specialites, {'idSpecialite':res.data.idSpecialite,'libelle':res.data.libelle,'idDomaine':Object.values(res.data.domaine)[0],'nom':Object.values(res.data.domaine)[1]}]});  
         });
     }

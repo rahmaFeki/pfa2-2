@@ -191,7 +191,7 @@ class ListeFormations extends Component {
      saveFormation = () => {
         let formData = new FormData();
 
-        formData.append('imgName', this.state.img);
+        formData.append('img', this.state.img);
         formData.append('idFormation', this.state.idFormation);
         formData.append('nom', this.state.nom);
         formData.append('objectif', this.state.objectif);
@@ -204,7 +204,7 @@ class ListeFormations extends Component {
         console.log('formation=> ' + JSON.stringify(formation));*/
 
         FormationService.createFormation(formData).then(res => {
-          
+          console.log(formData)
           // this.state.domaines.push(domaine)
           this.setState({formations : [...this.state.formations,res.data]});     
           

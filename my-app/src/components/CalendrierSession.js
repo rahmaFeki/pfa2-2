@@ -47,8 +47,6 @@ export default class CalendrierSession extends Component {
      componentDidMount() {
         
 
-  
-   console.log(this.props.location.state.disponibilites)
     }
     
 
@@ -227,7 +225,7 @@ export default class CalendrierSession extends Component {
                           <div className="row">
   
                               <div className="col-lg-10 col-md-10 col-sm-10">
-                                
+                              <button type="button" class="btn btn-primary"><i class="fa fa-plus mr-2"></i>Session</button>
                               </div>
                               <div className="col-lg-2 col-md-2 col-sm-2">
                              
@@ -252,7 +250,7 @@ export default class CalendrierSession extends Component {
   
   dayMaxEvents={true}
   weekends={this.state.weekendsVisible}
-  events={this.props.location.state.sessions} // alternatively, use the `events` setting to fetch from a feed
+  events={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
   //select={this.handleDateSelect}
  
  
