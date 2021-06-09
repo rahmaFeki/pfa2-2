@@ -11,6 +11,7 @@ class FormateurService {
     createFormateur(Formateur){
         return axios.post(DOMAINE_API_BASE_URL, Formateur);
     }
+ 
 
     getDomaineById(formateurId){
         return axios.get(DOMAINE_API_BASE_URL + '/' + formateurId);

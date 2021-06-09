@@ -10,6 +10,8 @@ import ListFormateur from './components/ListeFormateurs.js';
 import ListeFormations from './components/ListeFormations.js';
 import CalendrierDispo from './components/CalendrierDispo.js';
 import CalendrierSession from './components/CalendrierSession.js';
+import Catalogue_formations from './components/Catalogue_formations.js';
+import demoApp from './components/DemoApp.js';
 import LeftSideBar from './layout/SideBar';
 function App() {
   return (
@@ -26,11 +28,13 @@ function App() {
     <Switch> 
     <Route path = "/"  exact component = {ListDomaineComponent}></Route>
     <Route path = "/disponiblites"  component = {CalendrierDispo}></Route>
+    <Route path = "/demo"  component = {demoApp}></Route>
     <Route path = "/sessions"  component = {CalendrierSession}></Route>
                           <Route path = "/domaines"  component = {ListDomaineComponent}></Route>
                           <Route path = "/formateurs"  component = {ListFormateur}></Route>
                           <Route path = "/specialites_formateur"  component = {FormateurSpecialite}></Route>
-                          <Route path = "/specialites" component = {ListSpecialiteComponent}></Route>
+                          <Route path = "/specialites_formateur"  component = {FormateurSpecialite}></Route>
+                          <Route path = "/catalogue" component = {Catalogue_formations}></Route>
                           <Route path = "/formations" component = {ListeFormations}></Route>
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}
                     </Switch>

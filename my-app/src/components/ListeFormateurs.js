@@ -189,7 +189,7 @@ class ListFormateurs extends Component {
     componentDidMount(){
         var formas=[]
         FormateurService.getFormateurs().then((res) => {
-            console.log(res.data);
+       
             res.data.map(forma=>formas.push({'idUser':forma.idUser,'nom':forma.nom,'prenom':forma.prenom,'genre':forma.genre,'tel':forma.tel,'email':forma.email,'cin':forma.cin,'salaire':forma.salaire,'domaine':forma.specialites.map(spec=>spec.domaine.nom),'specialites':forma.specialites,'disponibilites':forma.disponibilites}))
             
             console.log(this.state.formateurs);
@@ -211,6 +211,7 @@ class ListFormateurs extends Component {
             motdepasse: this.state.motdepasse,
             salaire:this.state.salaire,
             deleted:0
+         
             
           
            

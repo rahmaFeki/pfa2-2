@@ -1,5 +1,6 @@
 import React, {  useState } from "react";
 import { Modal,Button } from 'react-bootstrap';
+import { Multiselect } from "multiselect-react-dropdown";
 function ModelAddFormation(props) {
   const [show, setShow] = useState(false);
   const [msgError, setMsgError] = useState('');
@@ -41,14 +42,15 @@ function ModelAddFormation(props) {
                                             <div className="col-md-6 col-sm-12">
                                                 <div className="form-group">
                                                     <label>Libellé</label>
-                                                    <input type="text" className="form-control"  
+                                                    <input type="text" placeholder="Entrer Libellé" className="form-control"  
                                                     id="cin" value= {props.nom} onChange = {props.changeHandlerNom}  />
                                                 </div>
                                             </div>
                                             <div className="col-md-6 col-sm-12">
                                                 <div className="form-group">
                                                     <label>Niveau</label>
-                                                    <input type="text" className="form-control" id="nom" value = {props.niveau} onChange = {props.changeHandlerNiveau}  />
+                                                    <input type="text" placeholder="Entrer Niveau" className="form-control" id="nom" value = {props.niveau} onChange = {props.changeHandlerNiveau}  />
+                                                    
                                                 </div>
                                             </div>
                                          
@@ -64,7 +66,7 @@ function ModelAddFormation(props) {
                                      <div className="col-md-12 col-sm-12">
                                          <div className="form-group">
                                              <label>Objectif</label>
-                                             <input type="text" className="form-control"  
+                                             <input type="text" className="form-control"  placeholder="Entrer Objectif"
                                              id="tel" value= {props.objectif} onChange = {props.changeHandlerObjectif}  />
                                          </div>
                                      </div>
@@ -76,16 +78,27 @@ function ModelAddFormation(props) {
                                      <div className="col-md-6 col-sm-12">
                                          <div className="form-group">
                                              <label>Prix</label>
-                                             <input type="text" className="form-control"  
+                                             <input type="text" placeholder="Entrer Prix" className="form-control"  
                                              id="tel" value= {props.prix} onChange = {props.changeHandlerPrix}  />
                                          </div>
                                      </div>
                                      <div className="col-md-6 col-sm-12">
                                          <div className="form-group">
                                              <label>Image</label>
-                                             <input type="file" value= {props.img} onChange = {props.changeHandlerImg} />
+                                             <input type="file"  value= {props.img} onChange = {props.changeHandlerImg} />
                                          </div>
                                      </div>
+                                  
+  </div>
+  <div className="row clearfix">
+                                     
+                                     <div className="col-md-12 col-sm-12">
+                                         <div className="form-group">
+                                             <label>Specialites</label>
+                                             <Multiselect options={props.objectArray} onSelect={props.onSelect} onRemove={props.onRemove} displayValue="libelle" />
+                                         </div>
+                                     </div>
+                                   
                                   
   </div>
         </Modal.Body>

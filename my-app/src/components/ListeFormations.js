@@ -5,6 +5,7 @@ import ModelAddFormation from '../components/ModelAddFormation'
 import ModelDeleteDomaine from '../components/ModelDeleteDomaine'
 import ModelUpdateFormation from '../components/ModelUpdateFormation'
 import FormationService from '../services/FormationService'
+import SpecialiteService from '../services/SpecialiteService'
 import { BrowserRouter as Router, Route, Link,NavLink } from "react-router-dom";
 class ListeFormations extends Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class ListeFormations extends Component {
                         <Link to={{
                             pathname: '/sessions',
                           
-                            state: {sessions: record.sessions,idFormation:record.idFormation}
+                            state: { formation: record}
                           }}> {record.nom} </Link>
                         
                     );
@@ -61,19 +62,33 @@ class ListeFormations extends Component {
                 sortable: true
             },
             {
+                key: "etat",
+                text: "Etat",
+                className: "nom",
+                align: "left",
+                sortable: true,
+                cell: record => {
+                    return (
+                       
+                        <span class={"tag tag-"+record.couleur}>{record.etat}
+                        <img src={"data:image/jpeg;base64,"+this.state.source} ALT="Larry"/>
+
+                        </span>
+                        
+                        
+                    );
+              
+                }
+            
+            },
+            {
                 key: "prix",
                 text: "Prix",
                 className: "nom",
                 align: "left",
                 sortable: true
             },    
-            {
-                key: "etat",
-                text: "Etat",
-                className: "nom",
-                align: "left",
-                sortable: true
-            },
+     
             {
                 key: "action",
                 text: "Action",
@@ -131,12 +146,26 @@ class ListeFormations extends Component {
             formations: [
               
             ],
+            specialites:new Array(),
+            imgAff:'',
             img: '',
             nom: '',
             prix:'',
             objectif:'',
             niveau:'',
-            imgPreview:''
+            imgPreview:'', 
+            objectArray: [
+                { key: 1, cat: "Group 1" },
+                { key: 2, cat: "Group 1" },
+                { key: 3, cat: "Group 1" },
+                { key: 4, cat: "Group 2" },
+                { key: 5, cat: "Group 2" },
+                { key: 6, cat: "Group 2" },
+                { key: 7, cat: "Group 2" }
+              ],
+              selectedValues: [
+           
+              ]
          
         }
         this.extraButtons = [
@@ -149,8 +178,16 @@ class ListeFormations extends Component {
         this.changePrixHandler = this.changePrixHandler.bind(this);
         this.changeImgHandler = this.changeImgHandler.bind(this);
         this.deleteFormation = this.deleteFormation.bind(this);
+        this.addItem = this.addItem.bind(this);
+        this.onRemove = this.onRemove.bind(this);
     }
-
+    addItem(selectedList, selectedItem) {
+      this.state.selectedValues.push(selectedItem['idSpecialite'])
+    }
+    onRemove(selectedList, removedItem) {
+        this.setState({ selectedValues: this.state.selectedValues.filter(formation => formation.key !== removedItem.key) });
+        console.log(this.state.selectedValues)
+    }
     deleteFormation(idDomaine) {
        
         FormationService.deleteFormation(idDomaine).then(res => {
@@ -172,23 +209,38 @@ class ListeFormations extends Component {
     componentDidMount() {
 
         FormationService.getFormations().then((res) => {
-            console.log(res)
+        
             this.setState({ formations: res.data });
+          
+            var bufferBase64 = Buffer.from(res.data[3].img, 'base64')
+       // console.log( URL.createObjectURL('data:image/jpeg;base64',bufferBase64))
+            //console.log(bufferBase64)
+            
+        //var reader = new window.FileReader();
+        //reader.readAsDataURL(res.data[3].img);
+            this.setState({ source: res.data[3].img});
+            console.log("data:image/jpeg;base64,"+this.state.source)
         
           
+        });
+       
+        SpecialiteService.getSpecialites().then((res) => {
+            this.setState({ specialites: res.data});  
         });
        
     }
     handleUpdate = (updatedFormation) =>{
         this.setState({ formations:   this.state.formations .map(formation => {
             if(formation.idFormation==updatedFormation.idFormation)
-                return {nom:updatedFormation.nom,idFormation:formation.idFormation,objectif:updatedFormation.objectif,niveau:updatedFormation.niveau,prix:updatedFormation.prix,etat:updatedFormation.etat}
+                return {nom:updatedFormation.nom,idFormation:formation.idFormation,objectif:updatedFormation.objectif,niveau:updatedFormation.niveau,prix:updatedFormation.prix,etat:updatedFormation.etat,couleur:updatedFormation.couleur}
             return formation
         })
     }) 
       
     }
      saveFormation = () => {
+         console.log(this.state.selectedValues)
+         
         let formData = new FormData();
 
         formData.append('img', this.state.img);
@@ -197,12 +249,14 @@ class ListeFormations extends Component {
         formData.append('objectif', this.state.objectif);
         formData.append('niveau', this.state.niveau);
         formData.append('prix', this.state.prix);
+        formData.append('specialities',this.state.selectedValues);
+ 
       
         //e.preventDefault();
        /* let formation = {idFormation:
             (this.state.formations.length==0)?0:this.state.formations[this.state.formations.length-1].idFormation+1,nom: this.state.nom, objectif:this.state.objectif,niveau:this.state.niveau,prix:this.state.prix,img:this.state.img };
         console.log('formation=> ' + JSON.stringify(formation));*/
-
+        console.log(formData)
         FormationService.createFormation(formData).then(res => {
           console.log(formData)
           // this.state.domaines.push(domaine)
@@ -240,6 +294,8 @@ class ListeFormations extends Component {
                 <div className="section-body" id="page_top">
                     <div className="container-fluid">
                         <div className="page-header">
+                            
+                       
                             <div className="left">
                                 <div className="input-group">
                                     <input type="text" className="form-control" placeholder="What you want to find" />
@@ -413,6 +469,10 @@ class ListeFormations extends Component {
                                             </div>
                                             <div className="col-lg-2 col-md-2 col-sm-2">
                                                 <ModelAddFormation nom={this.state.nom}
+                                                objectArray={this.state.specialites}
+                                                onSelect={this.addItem} // Function will trigger on select event
+                                                 onRemove={this.onRemove}   
+                                                displayValue="libelle" // Property name to display in the dropdown options
                                                      saveFormation={this.saveFormation} changeHandlerNom={this.changeNomHandler}
                                                     changeHandlerObjectif={this.changeObjectifHandler}  changeHandlerNiveau={this.changeNiveauHandler}   changeHandlerPrix={this.changePrixHandler}
                                                     changeHandlerImg={this.changeImgHandler}  />

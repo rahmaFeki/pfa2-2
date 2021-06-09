@@ -102,6 +102,7 @@ class ListSpecialiteComponent extends Component {
     componentDidMount() {
         var specials=[]
         SpecialiteService.getSpecialites().then((res) => {
+            console.log(res.data)
             res.data.map(spec=>specials.push({'idSpecialite':spec.idSpecialite,'libelle':spec.libelle,'idDomaine':Object.values(spec.domaine)[0],'nom':Object.values(spec.domaine)[1]}))
             console.log(specials);
             this.setState({ Specialites: specials });
