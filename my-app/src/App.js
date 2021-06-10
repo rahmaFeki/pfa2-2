@@ -13,6 +13,7 @@ import CalendrierSession from './components/CalendrierSession.js';
 import Catalogue_formations from './components/Catalogue_formations.js';
 import demoApp from './components/DemoApp.js';
 import LeftSideBar from './layout/SideBar';
+import authentification from './components/authentification.js';
 function App() {
   return (
   <div>
@@ -31,6 +32,7 @@ function App() {
     <Route path = "/demo"  component = {demoApp}></Route>
     <Route path = "/sessions"  component = {CalendrierSession}></Route>
                           <Route path = "/domaines"  component = {ListDomaineComponent}></Route>
+                          <Route path = "/login"  component = {authentification}></Route>
                           <Route path = "/formateurs"  component = {ListFormateur}></Route>
                           <Route path = "/specialites_formateur"  component = {FormateurSpecialite}></Route>
                           <Route path = "/specialites_formateur"  component = {FormateurSpecialite}></Route>
