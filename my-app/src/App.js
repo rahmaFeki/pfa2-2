@@ -29,9 +29,10 @@ function App() {
     <Switch> 
     <Route path = "/"  exact component = {ListDomaineComponent}></Route>
     <Route path = "/disponiblites"  component = {CalendrierDispo}></Route>
-    <Route path = "/demo"  component = {demoApp}></Route>
+ 
     <Route path = "/sessions"  component = {CalendrierSession}></Route>
                           <Route path = "/domaines"  component = {ListDomaineComponent}></Route>
+                          <Route path = "/specialites"  component = {ListSpecialiteComponent}></Route>
                           <Route path = "/login"  component = {authentification}></Route>
                           <Route path = "/formateurs"  component = {ListFormateur}></Route>
                           <Route path = "/specialites_formateur"  component = {FormateurSpecialite}></Route>
