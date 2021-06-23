@@ -82,7 +82,7 @@ class ListeDomaines extends Component {
             domaines: [
               
             ],
-            idDomaine: '',
+            idDomaine: 0,
             nom: ''
          
         }

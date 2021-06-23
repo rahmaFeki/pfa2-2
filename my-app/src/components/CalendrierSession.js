@@ -104,7 +104,7 @@ export default class CalendrierSession extends Component {
     
         this.setState({ dateSeance: document.getElementById("seanceValue").value() });
         //this.setState({seances: [...this.state.seances,{"date_seance":this.state.dateSeance}]}); 
-        console.log("hhhhhseancehhhh")
+      
        // console.log(event.target.value)
       //  console.log(this.state.seances)
        
@@ -157,7 +157,7 @@ export default class CalendrierSession extends Component {
             
             if(this.state.formateurs[i].disponibilites.length!=0){
             for (let j = 0; j < this.state.formateurs[i].disponibilites.length; j++) {
-            if( new Date(this.state.formateurs[i].disponibilites[j].start)>new Date(this.state.selectInfo.startStr)){
+            if(( new Date(this.state.formateurs[i].disponibilites[j].start)>new Date(this.state.selectInfo.startStr))&&( new Date(this.state.formateurs[i].disponibilites[j].end)>new Date(this.state.selectInfo.endStr))){
              testDispo=true 
             } 
                   
@@ -235,9 +235,9 @@ forma.push(this.state.formateurs[i])
 for(let i=0;i<this.state.nbSeance;i++){
        // this.setState({seances: [...this.state.seances,{"date_seance":document.getElementById(i).value}]});
         this.state.seances.push({dateSeance:document.getElementById(i).value,session:{id:(this.state.sessions.length==0)?0:this.state.sessions[this.state.sessions.length-1].id+1},formateur:{idUser:this.state.formateur}})
-       console.log(document.getElementById(i).value)
+  
     }
-        console.log("seancessss")
+     
        
         //this.props.history.push('/add-Specialite/_add');
         let session = { id: (this.state.sessions.length==0)?0:this.state.sessions[this.state.sessions.length-1].id+1 , title: this.state.title,start: new Date(this.state.selectInfo.startStr),end: new Date(this.state.selectInfo.startStr), nbParticipant: this.state.nbParticipant,nbSeance: this.state.nbSeance,formation:this.state.formation,seances:this.state.seances,formateur:{idUser:this.state.formateur }};
@@ -266,11 +266,11 @@ for(let i=0;i<this.state.nbSeance;i++){
         console.log(this.state.sessions)*/
       }
      componentDidMount() {
-console.log(this.props.location.state.formation)
+
         sessionService.getSessions(this.state.formation.idFormation).then((res) => {
-            console.log("sessions from server")
+         
             this.setState({ sessions: res.data });
-            console.log(this.state.sessions)
+          
 
           
         });
@@ -282,7 +282,7 @@ console.log(this.props.location.state.formation)
             
             
             this.setState({formateurs: formas });
-           console.log("******dispo*****")
+    
          
         });
         

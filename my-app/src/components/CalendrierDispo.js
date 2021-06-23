@@ -36,6 +36,7 @@ export default class CalendrierDispo extends Component {
         super(props);
         this.state = {
             id: this.props.match.params.id,
+            nom: this.props.match.params.nom,
            disponibilites: [{
          
           }],
@@ -227,12 +228,9 @@ export default class CalendrierDispo extends Component {
                           <div className="row">
   
                               <div className="col-lg-10 col-md-10 col-sm-10">
-                                
+                                Disponibilités de {this.state.nom}
                               </div>
-                              <div className="col-lg-2 col-md-2 col-sm-2">
-                             
-                              
-                              </div>
+                            
                           
                           </div>
                       </div>

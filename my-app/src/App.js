@@ -11,7 +11,7 @@ import ListeFormations from './components/ListeFormations.js';
 import CalendrierDispo from './components/CalendrierDispo.js';
 import CalendrierSession from './components/CalendrierSession.js';
 import Catalogue_formations from './components/Catalogue_formations.js';
-import demoApp from './components/DemoApp.js';
+
 import LeftSideBar from './layout/SideBar';
 import authentification from './components/authentification.js';
 function App() {

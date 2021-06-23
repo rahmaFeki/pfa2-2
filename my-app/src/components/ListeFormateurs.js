@@ -148,7 +148,7 @@ class ListFormateurs extends Component {
             }
         }
         this.state = {
-                idUser:'',
+                idUser:0,
                 formateurs: [],
                 cin: '',
                 nom: '',

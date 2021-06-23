@@ -67,9 +67,12 @@ class Catalogue_formations extends Component {
     componentDidMount() {
         if(localStorage.getItem('currentUser')){
         FormationService.getFormations().then((res) => {
-          console.log(this.dateDiff(res.data[0].sessions[0].end-res.data[0].sessions[0].start) )
+          console.log(res.data.img )
             this.setState({ formations: res.data });
-        
+            this.state.formations.map((
+              formation,i) =>(
+                console.log(formation.img ) 
+              ))
     
        
           
@@ -145,7 +148,7 @@ class Catalogue_formations extends Component {
         <div className="col-xl-4 col-lg-4 col-md-6">
           <div className="card">
         
-            <a href="#"><img className="card-img-top" src={"data:image/jpeg;base64,"+formation.img} width={20+'px'} height={150+'px'}   alt="" /></a>
+            <a href="#"><img className="card-img-top" src={"data:image/jpeg;base64,"+formation.img} width="4%" height="70%" alt="" /></a>
             <div className="card-body d-flex flex-column">
               <h5><a href="courses-details.html">{formation.nom}</a></h5>
               <div className="text-muted">{formation.objectif}</div>

@@ -145,6 +145,7 @@ class ListeFormations extends Component {
             formations: [
               
             ],
+            idFormation:0,
             specialites:new Array(),
             imgAff:'',
             img: '',
